@@ -3,14 +3,14 @@ if (isset($_POST["submit"])) { //เมื่อทำการกดปุ่�
     $email = $_POST["email"];
     $name = $_POST["name"];
     $password2 = $_POST["password2"];
-    $conn = new mysqli("localhost", "id15914843_data", "I1~7W8kxXzol-/9z", "id15914843_carrantal");
+    $conn = new mysqli("localhost", "id15931951_data", "O#BrvX-uI?iO<>i2", "id15931951_project");
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO login (Email, Name, Password)
-VALUES ('" . $email . "', '" . $name . "', '" . $password2 . "')";
+    $sql = "INSERT INTO login (id, password, email)
+VALUES ('" . $name . "', '" . $password2 . "', '" . $email . "')";
 
     if ($conn->query($sql) === TRUE) {
         echo '
@@ -27,11 +27,6 @@ VALUES ('" . $email . "', '" . $name . "', '" . $password2 . "')";
 }
 ?>
 <!DOCTYPE HTML>
-<!--
-	Identity by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>

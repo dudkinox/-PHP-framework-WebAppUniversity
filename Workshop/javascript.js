@@ -1,4 +1,4 @@
-function click(){
-    let name = document.getElementById("name").value;
+function clicks(){
+    var name = document.getElementById("name").value;
     alert(name);
 }

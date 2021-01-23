@@ -1,12 +1,5 @@
 @import url(fontawesome-all.min.css);
-@import url('https://fonts.googleapis.com/css2?family=Athiti&display=swap');
-/*
-	Identity by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
-/* Icon (alt) */
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
 
 	html, body, div, span, applet, object,
 	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -153,7 +146,7 @@
 
 	body, input, select, textarea {
 		color: #414f57;
-		font-family: "Athiti", Helvetica, sans-serif;
+		font-family: "Pattaya", Helvetica, sans-serif;
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 2;
@@ -463,7 +456,7 @@
 				text-rendering: auto;
 				line-height: 1;
 				text-transform: none !important;
-				font-family: 'Chakra+PetchFree';
+				font-family: 'Pattaya';
 				font-weight: 900;
 			}
 
@@ -539,7 +532,7 @@
 			text-rendering: auto;
 			line-height: 1;
 			text-transform: none !important;
-			font-family: 'Chakra+PetchFree';
+			font-family: 'Pattaya';
 			font-weight: 400;
 		}
 
@@ -556,7 +549,7 @@
 		}
 
 		.icon.brands:before {
-			font-family: 'Chakra+PetchBrands';
+			font-family: 'Pattaya';
 		}
 
 /* List */
@@ -769,7 +762,7 @@
 					text-rendering: auto;
 					line-height: 1;
 					text-transform: none !important;
-					font-family: 'Chakra+PetchFree';
+					font-family: 'Pattaya';
 					font-weight: 400;
 				}
 

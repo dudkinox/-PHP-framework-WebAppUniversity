@@ -1,55 +1,52 @@
+<?php
+session_start();
+session_destroy();
+if(isset($_POST["submit"])){
+    session_start();
+    $_SESSION["user"] = htmlentities($_POST["user"]);
+    $_SESSION["password"] = htmlentities($_POST["password"]);
+    header("location: app/homepage/");
+}
+?>
 <!DOCTYPE HTML>
-<!--
-	Identity by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
-    <title>Car-rantat-website</title>
+    <title>วิทยาการคอมพิวเตอร์</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="is-preload">
-
-    <!-- Wrapper -->
     <div id="wrapper">
-
-        <!-- Main -->
         <section id="main">
             <header>
-                <span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
+                <span class="avatar"><img src="images/logocomsci.png" alt="" /></span>
                 <br><br>
                 <h1>Login</h1>
-
             </header>
-
-            <form method="post" action="#">
+            <form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
                 <div class="fields">
                     <div class="field">
-                        <input type="text" name="name" id="name" placeholder="Name" />
+                        <input type="text" name="user" id="user" placeholder="USERNAME" />
                     </div>
                     <div class="field">
-                        <input type="password" name="password" id="password" placeholder="Password" />
-                    </div>
-
-                    <div class="field">
-                        
-                            <input type="checkbox" id="human" name="human" /><label for="human">ลืมรหัสผ่าน</label>
-                      
+                        <input type="password" name="password" id="password" placeholder="PASSWORD" />
                     </div>
                     <div class="field">
                         <a href="/register.php">สมัครสมาชิก</a>
                     </div>
+                    <div class="field">
+                        <a href="/register.php">ลืมรหัสผ่าน</a>
+                    </div>
                 </div>
                 <ul class="actions special">
-                    <li><a href="#" class="button">เข้าสู่ระบบ</a></li>
+                    <li><input name = "submit" type = "submit" class="button" value = "เข้าสู่ระบบ"/></li>
                 </ul>
             </form>
             <hr />

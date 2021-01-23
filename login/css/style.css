@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+*{
+    font-family: "Pattaya";
+}
+#main .avatar img {
+    display: block;
+    margin: -90px;
+    position: relative;
+    left: 0%;
+    width: 600px;
+}
+
+section#main {
+    background-color:#5a5a5a8a;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    line-height: 1.5;
+    margin: 0 0 0.75em 0;
+}
+
+body, input, select, textarea {
+    color: rgb(255 255 255 / 75%);
+    font-family: "Pattaya", Helvetica, sans-serif;
+    font-size: 14pt;
+    font-weight: 300;
+    line-height: 2;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+input[type="submit"], input[type="reset"], input[type="button"], button, .button {
+    color: rgb(255 255 255 / 75%) !important;
+}
+
+input#password {
+    color: #000;
+}
+input#user {
+    color: #000;
+}
