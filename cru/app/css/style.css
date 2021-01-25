@@ -1,0 +1,112 @@
+.os-content {
+  background: #303030;
+}
+
+a.brand-link {
+  background: #1d1d1d;
+}
+
+.content-wrapper {
+  background: #303030;
+}
+
+.text-dark {
+  color: #ffc107!important;
+}
+
+.navbar-white {
+  background-color: #ffd401;
+}
+
+.main-footer {
+  background: #ffc107;
+  color: #1f374d;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(0 0 0);
+}
+
+.aos-init.aos-animate {
+  color: #fff;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: #dc3545;
+}
+
+.badge-warning {
+  background-color: #ffffff;
+}
+
+li.list-group-item {
+  color: #000;
+}
+
+.card-body.box-profile {
+  background: #ffc107c2;
+}
+
+li.list-group-item {
+  background: #ffc10700;
+}
+
+h3.profile-username.text-center {
+  color: #303030;
+}
+
+h1 {
+  color: #ffc107;
+}
+
+label {
+  color: #000;
+}
+
+.card-primary:not(.card-outline)>.card-header {
+  background-color: #ffbf00;
+}
+
+h3.card-title {
+  color: #000;
+}
+
+div#pdf {
+  float: left;
+  position: relative;
+  left: 118px;
+}
+
+div#word {
+  float: right;
+  position: relative;
+  right: 135px;
+}
+
+th {
+  color: #000;
+  text-align: center;
+}
+
+td {
+  color: #000;
+  text-align: center;
+}
+
+.sidebar {
+  background: #303030;
+}
+
+span#approve_status {
+  color: #329f47;
+}
+
+aside.main-sidebar.sidebar-dark-primary.elevation-4 {
+  background: #303030;
+}
+
+.mailbox-read-message p,
+.mailbox-read-info h5,
+.mailbox-read-info h6 {
+  color: #000;
+}
