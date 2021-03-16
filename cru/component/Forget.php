@@ -17,7 +17,7 @@ function Forget()
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12"></div>
                     <button type="submit" class="btn btn-primary btn-block">Request new password</button>
                 </div>
                 <!-- /.col -->
@@ -36,4 +36,3 @@ function Forget()
 </div>
     ';
 }
-?>

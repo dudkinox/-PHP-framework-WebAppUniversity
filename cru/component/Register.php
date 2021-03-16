@@ -48,6 +48,20 @@ function Register()
                     </div>
                 </div>
             </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="เบอร์โทร" id = "TEL" name = "TEL" required />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <img id = "email" src="https://img.icons8.com/dusk/24/000000/phone-disconnected.png"/>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+            <textarea placeholder = "กรอกที่อยู่" id= "Address" name="Address" rows="5" cols="50" required />
+            </textarea> 
+                <div class="input-group-append">
+                </div>
+            </div>
             <div class="row">
                 <div class="col-8">
                     <div class="icheck-primary">
@@ -59,11 +73,12 @@ function Register()
                 </div>
                 <!-- /.col -->
                 <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block" onclick = "match_pass()" >Register</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
+        <a href="/" class="text-center my-3" id = "register">เข้าสู่ระบบ</a>
         <a href="?forget=1" class="text-center" id = "register">ลืมรหัสสมาชิก</a>
     </div>
     <!-- /.form-box -->
@@ -71,4 +86,3 @@ function Register()
 </div>
     ';
 }
-?>

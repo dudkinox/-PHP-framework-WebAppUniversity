@@ -1,3 +1,3 @@
 <?php
-  $conn = mysqli_connect("localhost", "root", "", "id15931951_project");
+  $conn = mysqli_connect("localhost", "id15931951_data", "O#BrvX-uI?iO<>i2", "id15931951_project");
 ?>

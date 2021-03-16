@@ -1,231 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap");
 * {
-    font-family: 'Kanit';
+  font-family: "Kanit";
+}
+.bg-white {
+  background-color: #303030 !important;
+}
+.text-dark {
+  color: #ffffff !important;
+}
+.text-primary {
+  color: #ffa800 !important;
 }
 
-body.login-page {
-    background-image: url('../img/background.jpg');
-    width: 100vw;
-    height: 100vh;
-    -webkit-background-size: cover;
-    backdrop-filter: blur(6px);
+body,
+html {
+  font-size: 17px !important;
 }
 
-b {
-    color: rgb(0, 0, 0);
-    background: #ffffff75;
-    border-radius: 32px;
+.btn.btn-primary {
+  color: #303030;
+  background-color: #ffa800;
+  border-color: #f64e60;
+}
+.max-h-70px {
+  max-height: 187px !important;
 }
 
-.card-body.login-card-body {
-    background: #F8C362;
+#input_animetion {
+  animation: input_animetion 2s ease 0s normal none;
 }
 
-button.btn.btn-primary.btn-block {
-    background: #2679ED;
+#sign_in {
+  animation: sign_in 2s ease 0s normal none;
 }
 
-a {
-    color: #303030;
+#logo {
+  animation: logo 2s ease 0s normal none;
+}
+#topic {
+  animation: topic 2s ease 0s normal none;
+}
+#head_com {
+  animation: head_com 2s ease 0s normal none;
 }
 
-/* ปุ่ม */
-
-.snip1562 {
-    background-color: #2679ED;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Kanit', Arial, sans-serif;
-    font-size: 1em;
-    font-size: 22px;
-    line-height: 1em;
-    margin: 15px 40px;
-    outline: none;
-    padding: 12px 40px 10px;
-    position: relative;
-    text-transform: uppercase;
-    font-weight: 700;
+@keyframes input_animetion {
+  0.0% {
+    transform: translate(-100px, 0px);
+  }
+  100% {
+  }
 }
-
-.snip1562:before, .snip1562:after {
-    border-color: transparent;
-    -webkit-transition: all 0.25s;
-    transition: all 0.25s;
-    border-style: solid;
-    border-width: 0;
-    content: "";
-    height: 24px;
-    position: absolute;
-    width: 24px;
+@keyframes sign_in {
+  0.0% {
+    transform: translate(0px, 100px);
+  }
+  100% {
+  }
 }
-
-.snip1562:before {
-    border-color: #2679ED;
-    border-left-width: 2px;
-    border-top-width: 2px;
-    left: -5px;
-    top: -5px;
-}
-
-.snip1562:after {
-    border-bottom-width: 2px;
-    border-color: #2679ED;
-    border-right-width: 2px;
-    bottom: -5px;
-    right: -5px;
-}
-
-.snip1562:hover, .snip1562.hover {
-    background-color: #2679ED;
-}
-
-.snip1562:hover:before, .snip1562.hover:before, .snip1562:hover:after, .snip1562.hover:after {
-    height: 100%;
-    width: 100%;
-}
-
-.col-8 {
-    position: relative;
-    left: -51px;
-}
-
-div {
-    margin: 0 auto;
-}
-
-label:before {
-    background: #fff;
-}
-
-p.login-box-msg {
-    color: #2679ed;
-}
-
-img#logo {
-    width: 50%;
-    display: block;
-    margin: 0 auto;
-    animation: logo 3s ease 0s normal none;
-}
-
-label#regis {
-    position: relative;
-    left: 27%;
-}
-
-.card {
-    background: #303030;
-}
-
-.card-body.register-card-body {
-    background: #F8C362;
-}
-
-.col-4 {
-    display: contents;
-}
-
-label#regis {
-    width: 204px;
-}
-
-.login-card-body .input-group .input-group-text, .register-card-body .input-group .input-group-text {
-    background-color: #5a5a5a;
-}
-
-a#forget {
-    float: left;
-}
-
-a#login {
-    float: right;
-    position: relative;
-    bottom: 18px;
-}
-
-p.mt-3.mb-1 {
-    float: left;
-    display: inline;
-}
-
-p.mb-0 {
-    float: right;
-    display: inline;
-    position: relative;
-    bottom: -16px;
-}
-
-a#register {
-    position: relative;
-    left: 33%;
-}
-
-b#major {
-    font-size: 30px;
-}
-
-#email{
-    animation: login 3s ease 0s infinite normal none;
-}
-
-#major{
-    animation: major 3s ease 0s normal none;
-}
-
-#form1{
-    animation: form1 1s ease 0s normal none;
-}
-#form2{
-    animation: form2 1s ease 0s normal none;
-}
-
-@media only screen and (max-width: 500px) {
-    body.login-page {
-        background-image: url('../img/mobile.jpg');
-    }
-}
-
 @keyframes logo {
-    0.0% {
-        opacity: 0;
-    }
-    100% {}
+  0.0% {
+    opacity: 0;
+  }
+  100% {
+  }
 }
-
-@keyframes login {
-    0.0%{
-    }
-    49.6%{
-        transform: scale(1.2);
-    }
+@keyframes topic {
+  0.0% {
+    color: #ffa800;
+    transform: translate(0px, 100px);
+  }
+  100% {
+    color: #303030;
+  }
 }
-
-@keyframes major {
-    0.0%{
-        transform: translate(0px, 50px);
-        color: rgb(194 61 61);
-    }
-    100%{
-        color: #000;
-    }
-    49.8%{
-        color: rgb(194 61 61);
-    }
-}
-
-@keyframes form2 {
-    0.0%{
-        transform: translate(-100px, 0);
-    }
-    100%{
-    }
-}
-@keyframes form1 {
-    0.0%{
-        transform: translate(100px, 0);
-    }
-    100%{
-    }
+@keyframes head_com {
+  0.0% {
+    transform: translate(0px, -100px);
+  }
+  100% {
+  }
 }

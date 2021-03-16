@@ -4,10 +4,15 @@ if (!isset($_SESSION["account_login"])) {
     header('location: ../');
 }
 require("../Database/index.php");
-$sql_type = "SELECT Type FROM login WHERE email = '" . $_SESSION["account_login"] . "' AND password = '" . $_SESSION["password_login"] . "'";
+$sql_type = "SELECT Type, name, id_student, email, TEL, Address FROM login WHERE email = '" . $_SESSION["account_login"] . "' AND password = '" . $_SESSION["password_login"] . "'";
 $result = $conn->query($sql_type);
 $row = $result->fetch_assoc();
 $type_account = $row["Type"];
+$showname = $row["name"];
+$showid = $row["id_student"];
+$showemail = $row["email"];
+$showTEL = $row["TEL"];
+$showAddress = $row["Address"];
 $logout = isset($_GET["logout"]) ? $_GET["logout"] : '';
 if ($logout == 1) {
     session_destroy();
@@ -17,11 +22,13 @@ $research = isset($_GET["research"]) ? $_GET["research"] : '';
 $approve = isset($_GET["approve"]) ? $_GET["approve"] : '';
 $testing = isset($_GET["testing"]) ? $_GET["testing"] : '';
 $person = isset($_GET["person"]) ? $_GET["person"] : '';
+$calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>COM-SCI System</title>
@@ -49,6 +56,8 @@ $person = isset($_GET["person"]) ? $_GET["person"] : '';
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- สร้าง CSS เอง -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- logo -->
+    <link rel="shortcut icon" href="https://img.icons8.com/dusk/64/000000/saving-book.png" />
     <!-- css animetion -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -63,31 +72,34 @@ $person = isset($_GET["person"]) ? $_GET["person"] : '';
     <div class="wrapper" data-aos="fade-right">
         <?php
         require("component/Head.php");
-        Head();
-        require("component/Menu.php");
-        Menu($person, $approve, $testing);
+        Head($showid, $type_account);
+        include "component/Menu.php";
         ?>
         <div class="content-wrapper">
             <?php
             if ($research == 1) {
-                require("research/Research.php");
-                Research();
+                $name_teacher = isset($_GET["name"]) ? $_GET["name"] : '';
+                $_SESSION["name_teacher"] = htmlentities($name_teacher);
+                echo '<script>window.location.href = "research/"</script>';
             } else if ($approve == 1) {
                 if ($type_account == "student") {
                     require("approve/List_student.php");
-                    List_student();
+                    List_student($showid, $showname);
                 } else {
                     require("approve/Approve.php");
-                    Approve();
+                    Approve($showname, $showid);
                 }
-            } else if ($testing == 1) {
+            } else if ($calendar == 1) {
+                echo '<script>window.location.href = "calendar/"</script>';
             } else if ($person == 1) {
                 require("research/Person.php");
-                Person();
-            } else if ($testing == 1) {
+                Person($showid);
             } else {
-                require("component/Content.php");
-                Content();
+                if ($type_account == "admin") {
+                    include "admin/Admin.php";
+                } else {
+                    include "component/Content.php";
+                }
             }
             ?>
         </div>
@@ -101,9 +113,9 @@ $person = isset($_GET["person"]) ? $_GET["person"] : '';
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
+
     </div>
     <!-- ./wrapper -->
 
@@ -148,6 +160,7 @@ $person = isset($_GET["person"]) ? $_GET["person"] : '';
     <script src="../bootstrap/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <!-- Summernote -->
     <script src="../bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js "></script>
     <script>
         AOS.init();
         window.fbAsyncInit = function() {
@@ -169,6 +182,7 @@ $person = isset($_GET["person"]) ? $_GET["person"] : '';
             $("#example1").DataTable({
                 "responsive": true,
                 "autoWidth": false,
+
             });
             $('#example2').DataTable({
                 "paging": true,

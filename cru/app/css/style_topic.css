@@ -1,0 +1,14 @@
+@media (min-width: 992px) {
+  .header .header-top {
+    background-color: #ffd401;
+  }
+}
+.bg-primary {
+  background-color: #ffd401 !important;
+}
+div#kt_content {
+  background: #303030;
+}
+div#kt_footer {
+  background: #ffd401;
+}

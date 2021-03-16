@@ -7,7 +7,9 @@ function Content()
     <div class="card-body login-card-body">
         <p class="login-box-msg">เข้าสู่ระบบ</p>
 
-        <form action="'; $_SERVER["PHP_SELF"]; echo '" method="post">
+        <form action="';
+    $_SERVER["PHP_SELF"];
+    echo '" method="post">
             <div class="input-group mb-3">
                 <input type="email" class="form-control" placeholder="Email" name = "account_login" required/>
                 <div class="input-group-append">
@@ -24,7 +26,7 @@ function Content()
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id = "front-end">
                 <div class="col-8">
                     <div class="icheck-primary">
                         <input type="checkbox" id="remember">

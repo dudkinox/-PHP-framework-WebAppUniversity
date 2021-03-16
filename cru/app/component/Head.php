@@ -1,7 +1,40 @@
 <?php
 
-function Head()
+function Head($showid, $type_account)
 {
+    require("../Database/index.php");
+    $sql_Noapprove_Alert = "SELECT Status, COUNT(Status) AS count_no_status FROM Topic 
+    WHERE ID_student = '" . $showid . "' AND Status = 'ยังไม่อนุมัติ'";
+
+    $sql_Yesapprove_Alert = "SELECT Status, COUNT(Status) AS count_yes_status FROM Topic 
+    WHERE ID_student = '" . $showid . "' AND Status = 'อนุมัติ'";
+
+    $sql_Comment_Alert = "SELECT COUNT(Comment) AS count_comment FROM comment 
+    WHERE ID_student = '" . $showid . "'";
+
+    $sql_Teacher = "SELECT Type FROM login WHERE Type = '" . $type_account . "'";
+
+    $result_No = $conn->query($sql_Noapprove_Alert);
+    $result_Yes = $conn->query($sql_Yesapprove_Alert);
+    $result_comment = $conn->query($sql_Comment_Alert);
+    $result_teacher = $conn->query($sql_Teacher);
+
+    if ($result_comment->num_rows > 0) {
+    } else {
+        $result_comment = 0;
+    }
+    $row_No = $result_No->fetch_assoc();
+    $row_Yes = $result_Yes->fetch_assoc();
+    $row_comment = $result_comment->fetch_assoc();
+    $row_teacher = $result_teacher->fetch_assoc();
+
+    $Noapprove_Alert = $row_No["Status"];
+    $Yesapprove_Alert = $row_Yes["Status"];
+    $Comment_Alert = $row_comment["count_comment"];
+    $count_yes = $row_Yes["count_yes_status"];
+    $count_no = $row_No["count_no_status"];
+    $sum = $count_yes + $count_no + $Comment_Alert;
+    $teacher_Alert = $row_teacher["Type"];
     echo '
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <ul class="navbar-nav">
@@ -10,11 +43,11 @@ function Head()
             </li>
             <li class="nav-item d-none d-sm-inline-block"
             data-aos="fade-down" data-aos-delay="2000">
-                <a href="index3.html" class="nav-link">Home</a>
+                <a href="?profile=1" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block" d-none d-sm-inline-block"
             data-aos="fade-down" data-aos-delay="2500">
-                <a href="#" class="nav-link">Contact</a>
+                <a href="?person=1" class="nav-link">Contact</a>
             </li>
         </ul>
     
@@ -31,11 +64,6 @@ function Head()
         </form>
     
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-comments"></i>
-                    <span class="badge badge-danger navbar-badge">3</span>
-                </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <a href="#" class="dropdown-item">
                         <div class="media">
@@ -88,24 +116,37 @@ function Head()
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">15</span>
+                    <span class="badge badge-warning navbar-badge">' . $sum . '</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> 
+                <span class="dropdown-item dropdown-header">' . $sum . ' Notifications </span>
+            ';
+
+    // ปิดแจ้งเตือนฝั่งอาจารย์
+    if ($teacher_Alert != "teacher") {
+        echo '
+                
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
-                        <span class="float-right text-muted text-sm">3 mins</span>
+                        <i class="fas fa-envelope mr-2"></i> ' . $Noapprove_Alert . ' 
+                        <span class="float-right text-muted text-sm">' . $count_no . '</span>
+                    </a> ';
+    }
+    #ต้องนี้คืออนุมัติ
+    if ($Yesapprove_Alert != "") {
+        echo '
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> ' . $Yesapprove_Alert . '
+                        <span class="float-right text-muted text-sm">' . $count_yes . '</span>
                     </a>
+                    ';
+    }
+    echo ' 
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
-                        <span class="float-right text-muted text-sm">12 hours</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
+                        <i class="fas fa-file mr-2"></i> ข้อเสนอแนะ 
+                        <span class="float-right text-muted text-sm">' . $Comment_Alert . '</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
@@ -121,6 +162,3 @@ function Head()
     <!-- /.navbar -->    
     ';
 }
-
-?>
-
