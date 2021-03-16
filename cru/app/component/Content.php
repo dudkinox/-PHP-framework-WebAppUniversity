@@ -109,7 +109,7 @@
                       <span class="description">Sent you a message - 3 days ago</span>
                     </div>
                     <p>
-                      ทดสอบ
+                      ทดสอบข้อความ
                     </p>
 
                     <form class="form-horizontal">
