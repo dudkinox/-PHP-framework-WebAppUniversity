@@ -13,7 +13,7 @@ var KTBootstrapDatetimepicker = (function () {
 
     // Demo 3
     $("#kt_datetimepicker_3").datetimepicker({
-      format: "DD / MM / YYYY+543",
+      format: "DD / MM / YYYY",
     });
 
     // Demo 4

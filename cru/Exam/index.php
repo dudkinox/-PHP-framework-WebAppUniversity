@@ -294,6 +294,7 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
     <!--begin::Page Scripts(used by this page)-->
     <script>
         $("#kt_datetimepicker_3").datetimepicker({
+            todayHighlight: true,
             format: "DD / MM / YYYY",
         });
     </script>

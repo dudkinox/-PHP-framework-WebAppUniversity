@@ -1,99 +1,108 @@
 <div class="col-lg-12">
     <div class="card card-custom gutter-b example example-compact">
-        <div class="card-header">
+        <div class="card-header bg-primary">
             <h1 class="card-title h1">แบบการขอสอบประเมินผลโครงงานวิจัยทางวิทยาการคอมพิวเตอร์</h1>
         </div>
         <form class="form">
-            <div class="card-body">
-                <label class="col-lg-3 col-form-label h1 ml-25">ประเภทภาควิชาที่เรียน</label>
-                <div class="col-lg-12">
-                    <div class="checkbox-inline h2 ml-10">
-                        <label class="checkbox">
-                            <input type="checkbox" />
-                            <span></span>ภาคในเวลาราชการ</label>
-                        <label class="checkbox">
-                            <input type="checkbox" />
-                            <span></span>ภาคนอกเวลาราชการ</label>
-                        <label class="checkbox">
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label ml-15">วัน/เดือน/ปี</label>
-                        <div class="col-lg-4 col-md-9 col-sm-12">
-                            <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
-                                <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="วัน//เดือน//ปี" data-target="#kt_datetimepicker_3" />
-                                <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
-                                    <span class="input-group-text">
-                                        <i class="ki ki-calendar"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="font-size-lg text-dark font-weight-bold mb-6">1. Customer Info:</h3>
-                    <div class="mb-15">
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Full Name:</label>
-                            <div class="col-lg-12">
-                                <input type="email" class="form-control" placeholder="Enter full name" />
-                                <span class="form-text text-muted">Please enter your full name</span>
-                            </div>
-                        </div>
-                        <div class="form-group row"></div>
-                        <label class="col-lg-3 col-form-label">Email address:</label>
-                        <div class="col-lg-12">
-                            <input type="email" class="form-control" placeholder="Enter email" />
-                            <span class="form-text text-muted">We'll never share your email with anyone else</span>
-                        </div>
+            <div class="card-body text-center">
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">ประเภทภาควิชาที่เรียน</label>
+                    <div class="radio-inline col-6">
+                        <label class="radio radio-lg">
+                            <input type="radio" checked="checked" id="type" name="type" />
+                            <span></span>
+                            ภาคในเวลาราชการ
+                        </label>
+                        <label class="radio radio-lg">
+                            <input type="radio" id="type" name="type" />
+                            <span></span>
+                            ภาคนอกเวลาราชการ
+                        </label>
                     </div>
                 </div>
-                <h3 class="font-size-lg text-dark font-weight-bold mb-6">2. Customer Account:</h3>
-                <div class="mb-3">
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label">Holder:</label>
-                        <div class="col-lg-12">
-                            <input type="email" class="form-control" placeholder="Enter full name" />
-                            <span class="form-text text-muted">Please enter your account holder</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label">Contact</label>
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="la la-chain"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Phone number" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-center">
-                        <label class="col-lg-3 col-form-label">Communication:</label>
-                        <div class="col-lg-12">
-                            <div class="checkbox-inline">
-                                <label class="checkbox">
-                                    <input type="checkbox" />
-                                    <span></span>Email</label>
-                                <label class="checkbox">
-                                    <input type="checkbox" />
-                                    <span></span>SMS</label>
-                                <label class="checkbox">
-                                    <input type="checkbox" />
-                                    <span></span>Phone</label>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">วัน - เดือน - ปี</label>
+                    <div class="col-6">
+                        <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
+                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="วัน - เดือน - ปี" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker" />
+                            <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
+                                <span class="input-group-text">
+                                    <img src="https://img.icons8.com/dusk/30/000000/calendar.png" />
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-12">
-                            <button type="reset" class="btn btn-success mr-2">Submit</button>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
-                        </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">ข้าพเจ้า</label>
+                    <div class="radio-inline col-6">
+                        <label class="radio radio-lg">
+                            <input type="radio" checked="checked" id="radios3_1" name="radios3_1" />
+                            <span></span>
+                            นาย
+                        </label>
+                        <label class="radio radio-lg">
+                            <input type="radio" id="radios3_1" name="radios3_1" />
+                            <span></span>
+                            นาง
+                        </label>
+                        <label class="radio radio-lg">
+                            <input type="radio" id="radios3_1" name="radios3_1" />
+                            <span></span>
+                            นางสาว
+                        </label>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">โปรดกรอกชื่อ-นามสกุล</label>
+                    <div class="col-6">
+                        <input class="form-control" type="search" placeholder="กรอกชื่อ-นามสกุล" id="example-search-input" />
+                        <span class="form-text text-muted">โปรดกรอกชื่อ-นามสกุล</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">รหัสประจำตัว</label>
+                    <div class="col-6">
+                        <input class="form-control" type="search" placeholder="6111500143" id="example-search-input" />
+                        <span class="form-text text-muted">โปรดกรอกเลข</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">มีความประสงค์ขอสอบเพื่อประเมินโครงงานวิจัย เรื่อง</label>
+                    <div class="col-6">
+                        <textarea class="form-control" id="exampleTextarea" rows="3" title="กรอกข้อความ"></textarea>
+                        <span class="form-text text-muted">โปรดกรอกข้อความไม่เกิน 150 บรรทัด</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">ลงทะเบียนรายวิชาวิจัยวิทยาการคอมพิวเตอร์ ภาคเรียนที่</label>
+                    <div class="col-6 row">
+                        <div class="col-lg-3">
+                            <input class="form-control" type="number" placeholder="00" id="example-search-input" />
+                        </div>
+                        <div class="col-lg-1">
+                            <h2>/</h2>
+                        </div>
+                        <div class="col-lg-3">
+                            <input class="form-control" type="search" placeholder="พ.ศ." id="example-search-input" />
+                        </div>
+                        <div class="col-lg-1">
+                            <h2>กลุ่ม</h2>
+                        </div>
+                        <div class="col-lg-4">
+                            <input class="form-control" type="number" placeholder="00" id="example-search-input" />
+                        </div>
+                        <span class="form-text text-muted">โปรดกรอกข้อความไม่เกิน 150 บรรทัด</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-4 col-form-label">เบอร์โทร</label>
+                    <div class="col-6">
+                        <input class="form-control" type="search" placeholder="082-000-0000" id="example-search-input" />
+                        <span class="form-text text-muted">โปรดกรอกเลข</span>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
