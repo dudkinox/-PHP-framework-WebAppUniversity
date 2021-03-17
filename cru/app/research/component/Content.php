@@ -163,14 +163,14 @@
                                                 <div class="table-title">
                                                     <div class="row">
                                                         <div class="col-sm-8">
-                                                            <h2>ระยะเวลา <b>การดำเนินการ</b></h2>
+                                                            <h2>กรอกระยะเวลา <b>การดำเนินการ</b></h2>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <table class="table table-bordered text-center">
                                                     <tbody>
                                                         <div class="form-group">
-                                                            <label>กิจกรรมที่ <b>[1]</b></label>
+                                                            <label>กิจกรรมที่ <b>(1)</b></label>
                                                             <input type="text" class="form-control form-control-lg" placeholder="กรอกชื่อกิจกรรม" />
                                                         </div>
                                                         <div class="form-group">

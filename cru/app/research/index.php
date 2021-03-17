@@ -175,6 +175,8 @@ $name_teacher = $_SESSION["name_teacher"];
         $(document).ready(function() {
             <?php
             $double_Q = '"';
+            $l_calendar = 3;
+            while($l_calendar <= 100){
             echo "
             $('[data-toggle=" . $double_Q . "tooltip" . $double_Q . "]').tooltip();
             var actions = $(" . $double_Q . "table" . $double_Q . ").html();
@@ -204,6 +206,7 @@ $name_teacher = $_SESSION["name_teacher"];
                     .find(" . $double_Q . ".add, .edit" . $double_Q . ")
                     .toggle();
                 $('[data-toggle=" . $double_Q . "tooltip" . $double_Q . "]').tooltip();
+            }
                ";
             ?>
         });
