@@ -9,7 +9,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex flex-column text-center">
                                         <h1><a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h1 mb-0">สอบเสนอหัวข้อ</a></h1>
-                                        <span class="text-muted font-weight-bold">Head of Development</span>
+                                        <span class="text-muted font-weight-bold">กรอกฟอร์มหัวข้อ, ส่งที่ปรึกษา, รออนุมัติ</span>
                                     </div>
                                 </div>
                             </div>
