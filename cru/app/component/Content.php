@@ -114,7 +114,7 @@
 
                     <form class="form-horizontal">
                       <div class="input-group input-group-sm mb-0">
-                        <input class="form-control form-control-sm" placeholder="Response">
+                        <input class="form-control form-control-sm" placeholder="แสดงความคิดเห็น">
                         <div class="input-group-append">
                           <button type="submit" class="btn btn-danger">Send</button>
                         </div>
