@@ -283,6 +283,7 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
             KTCalendarExternalEvents.init();
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js "></script>
 </body>
 
 </html>

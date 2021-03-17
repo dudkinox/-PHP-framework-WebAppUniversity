@@ -40,10 +40,11 @@
                 <p class="display-4 font-weight-boldest text-white mb-12">How did you get here</p>
                 <p class="font-size-h1 font-weight-boldest text-dark-75">Sorry we can't seem to find the page you're looking for.</p>
                 <p class="font-size-h4 line-height-md">There may be a misspelling in the URL entered,or the page you are looking for may no longer exist.</p>
+                <a href="../">
+                    <button type="button" class="btn btn-primary col-1">ตกลง</button>
+                </a>
             </div>
-            <!--end::Content-->
         </div>
-        <!--end::Error-->
     </div>
     <!--end::Main-->
     <script>

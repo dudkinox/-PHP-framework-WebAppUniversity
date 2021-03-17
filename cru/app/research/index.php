@@ -33,6 +33,8 @@ $name_teacher = $_SESSION["name_teacher"];
     <link rel="shortcut icon" href="https://img.icons8.com/dusk/64/000000/saving-book.png" />
     <!-- create css -->
     <link rel="stylesheet" href="app/css/style_topic.css">
+    <!-- line water -->
+    <link rel="stylesheet" href="../../linewater.css">
 
 </head>
 <!--end::Head-->
@@ -85,7 +87,32 @@ $name_teacher = $_SESSION["name_teacher"];
     <script>
         var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
     </script>
-    <script src="assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js"></script>
+    <script>
+        // left alignment setup
+        $("#kt_daterangepicker_3").daterangepicker({
+                buttonClasses: " btn",
+                applyClass: "btn-primary",
+                cancelClass: "btn-secondary",
+            },
+            function(start, end, label) {
+                $("#kt_daterangepicker_3 .form-control").val(
+                    start.format("DD-MM-YYYY") + " <-> " + end.format("DD-MM-YYYY")
+                );
+            }
+        );
+
+        $("#kt_daterangepicker_3_modal").daterangepicker({
+                buttonClasses: " btn",
+                applyClass: "btn-primary",
+                cancelClass: "btn-secondary",
+            },
+            function(start, end, label) {
+                $("#kt_daterangepicker_3 .form-control").val(
+                    start.format("DD-MM-YYYY") + " <-> " + end.format("DD-MM-YYYY")
+                );
+            }
+        );
+    </script>
     <script>
         var _initPriceSlider = function(element) {
             // init slider
@@ -173,85 +200,103 @@ $name_teacher = $_SESSION["name_teacher"];
         };
 
         $(document).ready(function() {
-            <?php
-            $double_Q = '"';
-            $l_calendar = 3;
-            while($l_calendar <= 100){
-            echo "
-            $('[data-toggle=" . $double_Q . "tooltip" . $double_Q . "]').tooltip();
-            var actions = $(" . $double_Q . "table" . $double_Q . ").html();
-            // Append table with add row form on add new button click 
+            $('[data-toggle="tooltip"]').tooltip();
+            var actions = $("table").html();
+            // Append table with add row form on add new button click
             let number = 1;
-            $(" . $double_Q . ".add-new" . $double_Q . ").click(function() {
-                $(this).attr(" . $double_Q . "disabled" . $double_Q . ", " . $double_Q . "disabled" . $double_Q . ");
-                var index = $(" . $double_Q . "table tbody" . $double_Q . ").index();
+            let calendar = 3;
+            $(".add-new").click(function() {
+                $(this).attr("disabled", "disabled");
+                var index = $("table tbody").index();
                 number++;
+                calendar++;
                 var row =
-                    '<div class=" . $double_Q . "form-group" . $double_Q . ">' +
-                    '<label>กิจกรรมที่ <b>[' + number + ']</b></label>' +
-                    '<input type=" . $double_Q . "text" . $double_Q . " class=" . $double_Q . "form-control form-control-lg" . $double_Q . " placeholder=" . $double_Q . "กรอกชื่อกิจกรรม" . $double_Q . " />' +
+                    '<div class="form-group">' +
+                    '<label>กิจกรรมที่ <b>(' + number + ')</b></label>' +
+                    '<input type="text" class="form-control form-control-lg" placeholder="กรอกชื่อกิจกรรม" />' +
                     '</div>' +
-                    '<div class=" . $double_Q . "form-group" . $double_Q . ">' +
+                    '<div class="form-group">' +
                     '<label>เลือกระยะเวลา</label>' +
-                    '<div class=" . $double_Q . "input-group" . $double_Q . " id=" . $double_Q . "kt_daterangepicker_3" . $double_Q . ">' +
-                    '<div class=" . $double_Q . "input-group-prepend" . $double_Q . ">' +
-                    '<span class=" . $double_Q . "input-group-text" . $double_Q . "><i class=" . $double_Q . "la la-calendar-check-o" . $double_Q . "></i></span>' +
+                    '<div class="input-group" id="kt_daterangepicker_' + calendar + '">' +
+                    '<div class="input-group-prepend">' +
+                    '<span class="input-group-text"><i class="la la-calendar-check-o"></i></span>' +
                     '</div>' +
-                    '<input type=" . $double_Q . "text" . $double_Q . " class=" . $double_Q . "form-control " . $double_Q . " placeholder=" . $double_Q . "วันที่เริ่มต้น <-> วันที่สิ้นสุด" . $double_Q . ">' +
+                    '<input type="text" class="form-control " placeholder="วันที่เริ่มต้น <-> วันที่สิ้นสุด">' +
                     '</div>' +
                     '</div>';
-                $(" . $double_Q . "table" . $double_Q . ").append(row);
-                $(" . $double_Q . "table tbody" . $double_Q . ")
+                $("table").append(row);
+                $("table tbody")
                     .eq(index + 1)
-                    .find(" . $double_Q . ".add, .edit" . $double_Q . ")
+                    .find(".add, .edit")
                     .toggle();
-                $('[data-toggle=" . $double_Q . "tooltip" . $double_Q . "]').tooltip();
-            }
-               ";
-            ?>
-        });
+                $('[data-toggle="tooltip"]').tooltip();
+                // left alignment setup
+                $("#kt_daterangepicker_" + calendar + "").daterangepicker({
+                        buttonClasses: " btn",
+                        applyClass: "btn-primary",
+                        cancelClass: "btn-secondary",
+                    },
+                    function(start, end, label) {
+                        $("#kt_daterangepicker_" + calendar + " .form-control").val(
+                            start.format("DD-MM-YYYY") + " <-> " + end.format("DD-MM-YYYY")
+                        );
+                    }
+                );
 
-        // Add row on add button click
-        $(document).on("click", ".add", function() {
-            var empty = false;
-            var input = $(this).parents("tr").find('input[type="text"]');
-            input.each(function() {
-                if (!$(this).val()) {
-                    $(this).addClass("error");
-                    empty = true;
-                } else {
-                    $(this).removeClass("error");
+                $("#kt_daterangepicker_" + calendar + "_modal").daterangepicker({
+                        buttonClasses: " btn",
+                        applyClass: "btn-primary",
+                        cancelClass: "btn-secondary",
+                    },
+                    function(start, end, label) {
+                        $("#kt_daterangepicker_" + calendar + " .form-control").val(
+                            start.format("DD-MM-YYYY") + " <-> " + end.format("DD-MM-YYYY")
+                        );
+                    }
+                );
+
+            });
+            // Add row on add button click
+            $(document).on("click", ".add", function() {
+                var empty = false;
+                var input = $(this).parents("tr").find('input[type="text"]');
+                input.each(function() {
+                    if (!$(this).val()) {
+                        $(this).addClass("error");
+                        empty = true;
+                    } else {
+                        $(this).removeClass("error");
+                    }
+                });
+                $(this).parents("tr").find(".error").first().focus();
+                if (!empty) {
+                    input.each(function() {
+                        $(this).parent("td").html($(this).val());
+                    });
+                    $(this).parents("tr").find(".add, .edit").toggle();
+                    $(".add-new").removeAttr("disabled");
                 }
             });
-            $(this).parents("tr").find(".error").first().focus();
-            if (!empty) {
-                input.each(function() {
-                    $(this).parent("td").html($(this).val());
-                });
+            // Edit row on edit button click
+            $(document).on("click", ".edit", function() {
+                $(this)
+                    .parents("tr")
+                    .find("td:not(:last-child)")
+                    .each(function() {
+                        $(this).html(
+                            '<input type="text" class="form-control" value="' +
+                            $(this).text() +
+                            '">'
+                        );
+                    });
                 $(this).parents("tr").find(".add, .edit").toggle();
+                $(".add-new").attr("disabled", "disabled");
+            });
+            // Delete row on delete button click
+            $(document).on("click", ".delete", function() {
+                $(this).parents("tr").remove();
                 $(".add-new").removeAttr("disabled");
-            }
-        });
-        // Edit row on edit button click
-        $(document).on("click", ".edit", function() {
-            $(this)
-                .parents("tr")
-                .find("td:not(:last-child)")
-                .each(function() {
-                    $(this).html(
-                        '<input type="text" class="form-control" value="' +
-                        $(this).text() +
-                        '">'
-                    );
-                });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").attr("disabled", "disabled");
-        });
-        // Delete row on delete button click
-        $(document).on("click", ".delete", function() {
-        $(this).parents("tr").remove();
-        $(".add-new").removeAttr("disabled");
-        });
+            });
         });
     </script>
     <script src="assets/js/pages/custom/wizard/wizard-1.js"></script>
