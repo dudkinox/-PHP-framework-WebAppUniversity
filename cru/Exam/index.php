@@ -159,6 +159,8 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
     <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <!-- link page menu -->
+    <script src="Exam/javascript.js"></script>
     <script>
         "use strict";
 
