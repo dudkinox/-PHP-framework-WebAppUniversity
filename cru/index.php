@@ -29,6 +29,8 @@ session_destroy();
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="assets/media/logos/logohead.png" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- line water -->
+    <link rel="stylesheet" href="linewater.css">
 </head>
 <!--end::Head-->
 <!--begin::Body-->

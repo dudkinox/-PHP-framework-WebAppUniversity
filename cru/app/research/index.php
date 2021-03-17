@@ -173,76 +173,82 @@ $name_teacher = $_SESSION["name_teacher"];
         };
 
         $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-            var actions = $("table").html();
-            // Append table with add row form on add new button click
+            <?php
+            $double_Q = '"';
+            echo "
+            $('[data-toggle=" . $double_Q . "tooltip" . $double_Q . "]').tooltip();
+            var actions = $(" . $double_Q . "table" . $double_Q . ").html();
+            // Append table with add row form on add new button click 
             let number = 1;
-            $(".add-new").click(function() {
-                $(this).attr("disabled", "disabled");
-                var index = $("table tbody").index();
+            $(" . $double_Q . ".add-new" . $double_Q . ").click(function() {
+                $(this).attr(" . $double_Q . "disabled" . $double_Q . ", " . $double_Q . "disabled" . $double_Q . ");
+                var index = $(" . $double_Q . "table tbody" . $double_Q . ").index();
                 number++;
                 var row =
-                    '<div class="form-group">' +
+                    '<div class=" . $double_Q . "form-group" . $double_Q . ">' +
                     '<label>กิจกรรมที่ <b>[' + number + ']</b></label>' +
-                    '<input type="text" class="form-control form-control-lg" placeholder="กรอกชื่อกิจกรรม" />' +
+                    '<input type=" . $double_Q . "text" . $double_Q . " class=" . $double_Q . "form-control form-control-lg" . $double_Q . " placeholder=" . $double_Q . "กรอกชื่อกิจกรรม" . $double_Q . " />' +
                     '</div>' +
-                    '<div class="form-group">' +
+                    '<div class=" . $double_Q . "form-group" . $double_Q . ">' +
                     '<label>เลือกระยะเวลา</label>' +
-                    '<div class="input-group" id="kt_daterangepicker_3">' +
-                    '<div class="input-group-prepend">' +
-                    '<span class="input-group-text"><i class="la la-calendar-check-o"></i></span>' +
+                    '<div class=" . $double_Q . "input-group" . $double_Q . " id=" . $double_Q . "kt_daterangepicker_3" . $double_Q . ">' +
+                    '<div class=" . $double_Q . "input-group-prepend" . $double_Q . ">' +
+                    '<span class=" . $double_Q . "input-group-text" . $double_Q . "><i class=" . $double_Q . "la la-calendar-check-o" . $double_Q . "></i></span>' +
                     '</div>' +
-                    '<input type="text" class="form-control " placeholder="วันที่เริ่มต้น <-> วันที่สิ้นสุด">' +
+                    '<input type=" . $double_Q . "text" . $double_Q . " class=" . $double_Q . "form-control " . $double_Q . " placeholder=" . $double_Q . "วันที่เริ่มต้น <-> วันที่สิ้นสุด" . $double_Q . ">' +
                     '</div>' +
                     '</div>';
-                $("table").append(row);
-                $("table tbody")
+                $(" . $double_Q . "table" . $double_Q . ").append(row);
+                $(" . $double_Q . "table tbody" . $double_Q . ")
                     .eq(index + 1)
-                    .find(".add, .edit")
+                    .find(" . $double_Q . ".add, .edit" . $double_Q . ")
                     .toggle();
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-            // Add row on add button click
-            $(document).on("click", ".add", function() {
-                var empty = false;
-                var input = $(this).parents("tr").find('input[type="text"]');
-                input.each(function() {
-                    if (!$(this).val()) {
-                        $(this).addClass("error");
-                        empty = true;
-                    } else {
-                        $(this).removeClass("error");
-                    }
-                });
-                $(this).parents("tr").find(".error").first().focus();
-                if (!empty) {
-                    input.each(function() {
-                        $(this).parent("td").html($(this).val());
-                    });
-                    $(this).parents("tr").find(".add, .edit").toggle();
-                    $(".add-new").removeAttr("disabled");
+                $('[data-toggle=" . $double_Q . "tooltip" . $double_Q . "]').tooltip();
+               ";
+            ?>
+        });
+
+        // Add row on add button click
+        $(document).on("click", ".add", function() {
+            var empty = false;
+            var input = $(this).parents("tr").find('input[type="text"]');
+            input.each(function() {
+                if (!$(this).val()) {
+                    $(this).addClass("error");
+                    empty = true;
+                } else {
+                    $(this).removeClass("error");
                 }
             });
-            // Edit row on edit button click
-            $(document).on("click", ".edit", function() {
-                $(this)
-                    .parents("tr")
-                    .find("td:not(:last-child)")
-                    .each(function() {
-                        $(this).html(
-                            '<input type="text" class="form-control" value="' +
-                            $(this).text() +
-                            '">'
-                        );
-                    });
+            $(this).parents("tr").find(".error").first().focus();
+            if (!empty) {
+                input.each(function() {
+                    $(this).parent("td").html($(this).val());
+                });
                 $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").attr("disabled", "disabled");
-            });
-            // Delete row on delete button click
-            $(document).on("click", ".delete", function() {
-                $(this).parents("tr").remove();
                 $(".add-new").removeAttr("disabled");
-            });
+            }
+        });
+        // Edit row on edit button click
+        $(document).on("click", ".edit", function() {
+            $(this)
+                .parents("tr")
+                .find("td:not(:last-child)")
+                .each(function() {
+                    $(this).html(
+                        '<input type="text" class="form-control" value="' +
+                        $(this).text() +
+                        '">'
+                    );
+                });
+            $(this).parents("tr").find(".add, .edit").toggle();
+            $(".add-new").attr("disabled", "disabled");
+        });
+        // Delete row on delete button click
+        $(document).on("click", ".delete", function() {
+        $(this).parents("tr").remove();
+        $(".add-new").removeAttr("disabled");
+        });
         });
     </script>
     <script src="assets/js/pages/custom/wizard/wizard-1.js"></script>

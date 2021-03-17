@@ -66,6 +66,8 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
     <link rel="stylesheet" href="../bootstrap/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../bootstrap/plugins/summernote/summernote-bs4.css">
+    <!-- line water -->
+    <link rel="stylesheet" href="../linewater.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

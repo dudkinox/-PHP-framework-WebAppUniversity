@@ -35,6 +35,8 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
     <link rel="shortcut icon" href="https://img.icons8.com/dusk/64/000000/saving-book.png" />
     <!-- create css -->
     <link rel="stylesheet" href="app/css/style_calendar.css">
+    <!-- line water -->
+    <link rel="stylesheet" href="../linewater.css">
 </head>
 
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
