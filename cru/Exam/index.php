@@ -75,6 +75,10 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
                         include 'component/Content.php';
                     } else if ($menu == 1) {
                         include 'component/Menu.php';
+                    } else if ($menu == 2) {
+                        include 'component/Exam.php';
+                    } else if ($menu == 3) {
+                        include 'component/Bookk.php';
                     } else {
                         include 'component/Menu.php';
                     }
@@ -92,6 +96,7 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
 
     <!--begin::Page Vendors(used by this page)-->
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+
     <script>
         var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
     </script>
@@ -286,6 +291,12 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js "></script>
+    <!--begin::Page Scripts(used by this page)-->
+    <script>
+        $("#kt_datetimepicker_3").datetimepicker({
+            format: "DD / MM / YYYY",
+        });
+    </script>
 </body>
 
 </html>
