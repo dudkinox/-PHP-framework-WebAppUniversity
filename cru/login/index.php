@@ -4,8 +4,9 @@ require('../Database/index.php');
 $_SESSION["account_login"] = isset($_GET["id"]) ? $_GET["id"] : '';
 $_SESSION["password_login"] = isset($_GET["pass"]) ? $_GET["pass"] : '';
 
-$ID = $_SESSION["account_login"];
-$Password = $_SESSION["password_login"];
+
+$ID = mysqli_real_escape_string($conn, $_SESSION["account_login"]);
+$Password = mysqli_real_escape_string($conn, $_SESSION["password_login"]);
 $sql = "SELECT email, password FROM login WHERE email = '" . $ID . "' AND password = '" . $Password . "'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
