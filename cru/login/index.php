@@ -1,16 +1,19 @@
 <?php
 session_start();
+
 require('../Database/index.php');
 $_SESSION["account_login"] = isset($_GET["id"]) ? $_GET["id"] : '';
 $_SESSION["password_login"] = isset($_GET["pass"]) ? $_GET["pass"] : '';
-
-
 $ID = mysqli_real_escape_string($conn, $_SESSION["account_login"]);
 $Password = mysqli_real_escape_string($conn, $_SESSION["password_login"]);
 $Password = md5($Password);
 $sql = "SELECT email, password FROM login WHERE email = '" . $ID . "' AND password = '" . $Password . "'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
+    // if (!headers_sent()) {
+    //     foreach (headers_list() as $header)
+    //         header_remove($header);
+    // }
     header('location: ../app/');
 } else {
     echo '

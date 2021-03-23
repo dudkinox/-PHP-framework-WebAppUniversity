@@ -32,48 +32,36 @@ session_destroy();
     <!-- line water -->
     <link rel="stylesheet" href="linewater.css">
 </head>
-<!--end::Head-->
-<!--begin::Body-->
 
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Login-->
         <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
-            <!--begin::Aside-->
-            <div class="login-aside d-flex flex-column flex-row-auto" style="background-color: #F2C98A;background-image: url(img/line-waternew.jpg);background-position: bottom;background-blend-mode: lighten;">
-                <!--begin::Aside Top-->
+
+            <div class="login-aside d-flex flex-column flex-row-auto" style="background-color: #F2C98A;background-image: url(img/Comp1.mp4);background-position: bottom;background-blend-mode: lighten;">
+                <video autoplay muted loop id="myVideo">
+                    <source src="img/Comp1.mp4" type="video/mp4">
+                </video>
+
                 <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
                     <a href="#" class="text-center mb-10" id="logo">
-                        <img src="img/LogoAA.png" class="max-h-300px" alt="" />
+                        <img src="img/LogoAA.png" class="max-h-300px" alt="" data-tilt data-tilt-max="30" data-tilt-glare data-tilt-max-glare="0.55" />
                     </a>
                 </div>
-                <!--end::Aside Top-->
-                <!--begin::Aside Bottom-->
-                <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(img/Start.png)" data-aos="flip-left"></div>
-                <!--end::Aside Bottom-->
+                <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(img/Start.png)" data-aos="fade-up" data-tilt data-tilt-max="30" data-tilt-glare data-tilt-max-glare="0.55"></div>
             </div>
-            <!--begin::Aside-->
-            <!--begin::Content-->
             <div class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
-                <!--begin::Content body-->
                 <div class="d-flex flex-column-fluid flex-center">
-                    <!--begin::Signin-->
                     <div class="login-form login-signin">
-                        <!--begin::Form-->
                         <form class="form" novalidate="novalidate" id="kt_login_signin_form">
-                            <!--begin::Title-->
                             <div class="pb-13 pt-lg-0 pt-5" data-aos="flip-down" id="head_com">
                                 <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg aos-init aos-animate">Welcome to Project</h3>
                             </div>
-                            <!--begin::Title-->
-                            <!--begin::Form group-->
                             <div class="form-group" id="input_animetion" data-aos="fade-right">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                 <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="email" name="username" id="username" autocomplete="off" placeholder="EMAIL" />
                             </div>
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
                             <div class="form-group" id="input_animetion" data-aos="fade-right">
                                 <div class="d-flex justify-content-between mt-n5">
                                     <label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
@@ -85,8 +73,6 @@ session_destroy();
                                 </span>
                             </div>
 
-                            <!--end::Form group-->
-                            <!--begin::Action-->
                             <div class=" pb-lg-0 pb-5" id="sign_in">
                                 <button type="button" id="kt_login_signin_submit" class="btn btn-primary btn-block font-weight-bolder font-size-h6 px-8 py-2 my-3 mr-3 mt-18">Sign In</button>
                             </div>
@@ -139,7 +125,7 @@ session_destroy();
                                 <label class="checkbox mb-0">
                                     <input type="checkbox" name="agree" />
                                     <span></span>
-                                    <div class="ml-2">I Agree the
+                                    <div class="ml-2 text-white">I Agree the
                                         <a href="#">terms and conditions</a>.
                                     </div>
                                 </label>
@@ -188,7 +174,7 @@ session_destroy();
                 <div class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0">
                     <div class="text-dark-50 font-size-lg font-weight-bolder mr-10">
                         <span class="mr-1">2021©</span>
-                        <a href="#" target="_blank" class="text-dark-75 text-hover-primary">นักศึกษาสหกิจ</a>
+                        <a href="#" target="_blank" class="text-dark-75 text-hover-primary text-white">นักศึกษาสหกิจ</a>
                     </div>
                     <a href="#" class="text-primary font-weight-bolder font-size-lg">Terms</a>
                     <a href="#" class="text-primary ml-5 font-weight-bolder font-size-lg">Plans</a>
@@ -271,6 +257,8 @@ session_destroy();
     <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
+    <!-- card filp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js "></script>
 
     <script>
         "use strict";
@@ -302,14 +290,14 @@ session_destroy();
                             username: {
                                 validators: {
                                     notEmpty: {
-                                        message: 'Username is required'
+                                        message: 'กรุณากรอก Email'
                                     }
                                 }
                             },
                             password: {
                                 validators: {
                                     notEmpty: {
-                                        message: 'Password is required'
+                                        message: 'กรุณากรอก Password'
                                     }
                                 }
                             }

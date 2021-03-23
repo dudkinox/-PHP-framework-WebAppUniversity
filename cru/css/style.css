@@ -44,6 +44,15 @@ html {
   animation: head_com 2s ease 0s normal none;
 }
 
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 10%;
+  min-height: 100%;
+  opacity: 0.09;
+}
+
 @keyframes input_animetion {
   0.0% {
     transform: translate(-100px, 0px);

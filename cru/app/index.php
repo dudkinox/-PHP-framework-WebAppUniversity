@@ -74,8 +74,7 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper" data-aos="fade-right">
         <?php
-        require("component/Head.php");
-        Head($showid, $type_account);
+        include "component/Head.php";
         include "component/Menu.php";
         ?>
         <div class="content-wrapper">
@@ -86,8 +85,7 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
                 echo '<script>window.location.href = "research/"</script>';
             } else if ($approve == 1) {
                 if ($type_account == "student") {
-                    require("approve/List_student.php");
-                    List_student($showid, $showname);
+                    include "approve/List_student.php";
                 } else {
                     require("approve/Approve.php");
                     Approve($showname, $showid);
@@ -95,8 +93,7 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
             } else if ($calendar == 1) {
                 echo '<script>window.location.href = "calendar/"</script>';
             } else if ($person == 1) {
-                require("research/Person.php");
-                Person($showid);
+                include "research/Person.php";
             } else {
                 if ($type_account == "admin") {
                     include "admin/Admin.php";

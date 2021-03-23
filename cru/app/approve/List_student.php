@@ -1,8 +1,3 @@
-<?php
-function List_student()
-{
-    // head
-    echo '
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -21,11 +16,8 @@ function List_student()
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-</div>    
-    ';
-    // main
-    echo '
-    <div class="card" data-aos="flip-left" data-aos-delay = "1000">
+</div>
+<div class="card" data-aos="flip-left" data-aos-delay="1000">
     <div class="card-header">
         <h3 class="card-title">รายการที่นักศึกษาขออนุมัติ</h3>
     </div>
@@ -41,22 +33,36 @@ function List_student()
                 </tr>
             </thead>
             <tbody>
+                <?php
+                // หัวข้อ
+                $sql_data = "SELECT * FROM Topic WHERE id_student = '" . $showid . "'";
+                $result_data = $conn->query($sql_data);
+                // สถานะ
+                $sql_status = "SELECT Status FROM Topic_status WHERE id_student = '" . $showid . "'";
+                $result_status = $conn->query($sql_status);
+                if ($result_status->num_rows > 0) {
+                    if ($result_data->num_rows > 0) {
+                        $row_data = $result_data->fetch_assoc();
+                        $row_status = $result_status->fetch_assoc();
+                        echo '
                 <tr>
-                    <td>หุ่นยนต์แม่บ้าน</td>
-                    <td>นาย ศุภณัฐ
-                        ชินราช
+                    <td>' . $row_data["NameProjectTH"] . '</td>
+                    <td>' . $showname . '</td>
+                    <td>' . $row_data["Name_teacher"] . '</td>
+                    <td><img src="https://img.icons8.com/dusk/30/000000/pdf.png" /></td>
+                    <td>
+                        <span id="approve_status">
+                            <p>' . $row_status["Status"] . '</p>
+                        </span>
                     </td>
-                    <td>อาจารย์ ชื่อ - สกุล</td>
-                    <td><img src="https://img.icons8.com/dusk/30/000000/pdf.png"/></td>
-                    <td><span id = "approve_status"><p>อนุมัติเเล้ว</p></span></td>
-                </tr>
+                </tr>';
+                    }
+                }
+                ?>
             </tbody>
         </table>
     </div>
-</div>    
-    ';
-    // comment teacher
-    echo '
+</div>
 <div class="col-md-12">
     <div class="card card-primary card-outline">
         <div class="card-header">
@@ -177,8 +183,4 @@ function List_student()
         <!-- /.card-footer -->
     </div>
     <!-- /.card -->
-</div>    
-    ';
-}
-
-?>
+</div>

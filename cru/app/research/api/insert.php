@@ -1,36 +1,79 @@
 <?php
-$conn = mysqli_connect("localhost", "id15931951_data", "O#BrvX-uI?iO<>i2", "id15931951_project");
+session_start();
+require("../../../Database/index.php");
 
-$id_student = isset($_GET["id"]) ? $_GET["id"] : '';
-$Project_Name = $_POST["Project_Name"];
-$Teacher_name = isset($_GET["name"]) ? $_GET["name"] : '';
+// ข้อมูลนักเรียน
+$name_student = $_SESSION["account_login"];
+$sql_data_student = "SELECT * FROM login WHERE email = '" . $name_student . "'";
+$result_data_student = $conn->query($sql_data_student);
+$row_data_student = $result_data_student->fetch_assoc();
+$name_teacher = $_SESSION["name_teacher"];
+$id_student = $row_data_student["id_student"];
+$name_lastname = $row_data_student["name"];
+// ข้อมูล
+$NameProjectTH = $_POST["NameProjectTH"];
+$NameProjectEng = $_POST["NameProjectEng"];
+$importance = $_POST["importance"];
+$objective = $_POST["objective"];
+$Principle = $_POST["Principle"];
+$plan_work = $_POST["plan_work"];
+$limit_work = $_POST["limit_work"];
+$benefit = $_POST["benefit"];
+$vocabulary = $_POST["vocabulary"];
 
-// Check connection
-$sql = "INSERT INTO Topic (ID_student, Name_teacher, Research, Status) 
-    VALUES ('" . $id_student . "', '" . $Teacher_name .  "', '" . $Project_Name . "', 'ยังไม่อนุมัติ')";
+$sql_Topic = "INSERT INTO Topic (id_student,
+                            Name_teacher,
+                            NameProjectTH,
+                            NameProjectEng,
+                            importance,
+                            objective,
+                            Principle,
+                            plan_work,
+                            limit_work,
+                            benefit,
+                            vocabulary)
+VALUES('" . $id_student . "',
+       '" . $name_teacher . "', 
+       '" . $NameProjectTH . "', 
+       '" . $NameProjectEng . "', 
+       '" . $importance . "', 
+       '" . $objective . "', 
+       '" . $Principle . "', 
+       '" . $plan_work . "',
+       '" . $limit_work . "',
+       '" . $benefit . "',
+       '" . $vocabulary . "'
+        )";
 
-$allow = array('pdf');
-$temp = explode(".", $_FILES['fileproject']['name']);
-$extension = end($temp);
-$upload_file = $_FILES['fileproject']['name'];
-move_uploaded_file($_FILES['fileproject']['tmp_name'], "Pdf/" . $_FILES['fileproject']['name']);
-$qry = mysqli_query($conn, "INSERT INTO Filetopic (ID_student ,File,Rounds)VALUES('" . $id_student . "' , '" . $upload_file . "', '1')");
-if ($qry && $conn->query($sql) === TRUE) {
-    header('Location: https://cru-com-sci.000webhostapp.com/app/?approve=1');
+// ระยะเวลากิจกรรม
+$activity = $_POST["activity"];
+$date = $_POST["date"];
+$sql_date_event = "INSERT INTO date_event (id_student,
+                                        Date,
+                                        Ativity)
+                    VALUES ('" . $id_student . "',
+                    '" . $date . "',
+                    '" . $activity . "'
+                    )";
+
+// สถานะ
+$sql_status = "INSERT INTO Topic_status (id_student,
+                                        Name_teacher,
+                                        Status)
+                                        VALUES ('" . $id_student . "',
+                                        '" . $name_teacher . "',
+                                        'ยังไม่อนุมัติ'
+                                        )";
+if ($conn->query($sql_Topic) === TRUE) {
+    if ($conn->query($sql_date_event) === TRUE) {
+        if ($conn->query($sql_status) === TRUE) {
+            header('location: ../../?approve=1');
+        }
+    } else {
+        echo "Error: " . $sql_date_event . "<br>" . $conn->error;
+    }
 } else {
-    echo "Error: " . $qry . "<br>" . $conn->error;
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql_Topic . "<br>" . $conn->error;
 }
 
-// $allowedExts = array("pdf");
-// $temp = explode(".", $_FILES["pdf_file"]["name"]);
-// $extension = end($temp);
-// $upload_pdf=$_FILES["pdf_file"]["name"];
-// move_uploaded_file($_FILES["pdf_file"]["tmp_name"],"uploads/pdf/" . $_FILES["pdf_file"]["name"]);
-// $sql=mysqli_query($con,"INSERT INTO `Table Name`(`pdf_file`)VALUES($upload_pdf')");
-// if($sql){
-// 	echo "Data Submit Successful";
-// }
-// else{
-// 	echo "Data Submit Error!!";
-// }
+$conn->close();

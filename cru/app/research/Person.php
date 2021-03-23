@@ -1,47 +1,42 @@
 <?php
-function Person()
-{
-  require("../Database/index.php");
-  $sql_teacher_limit = "SELECT COUNT(ID_student) AS count_yes,Name_teacher FROM Topic WHERE Status = 'อนุมัติ'";
-  $sql_teacher = "SELECT Name, about, address,phone, image FROM teacher ";
-  $limit = $conn->query($sql_teacher_limit);
-  $loop_teacher = $conn->query($sql_teacher);
-  // head
-  echo ' 
+require("../Database/index.php");
+// $sql_teacher_limit = "SELECT COUNT(ID_student) AS count_yes,Name_teacher FROM Topic WHERE Status = 'อนุมัติ'";
+$sql_teacher = "SELECT Name, about, address,phone, image FROM teacher ";
+$limit = $conn->query($sql_teacher_limit);
+$loop_teacher = $conn->query($sql_teacher);
+// head
+?>
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6" data-aos="fade-down" data-aos-delay="700">
-                <h1 class="m-0 text-dark">หัวข้อวิจัย</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">
-                        <a href="#">
-                            Research topic
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item active">หัวข้อวิจัย</li>
-                </ol>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6" data-aos="fade-down" data-aos-delay="700">
+        <h1 class="m-0 text-dark">หัวข้อวิจัย</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">
+            <a href="#">
+              Research topic
+            </a>
+          </li>
+          <li class="breadcrumb-item active">หัวข้อวิจัย</li>
+        </ol>
+      </div>
     </div>
-</div>    
-    ';
+  </div>
+</div>
 
-  // main
-  echo '
 <section class="content" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
   <h1>เลือกอาจารย์ที่ปรึกษา</h1>
   <div class="card card-solid">
     <div class="card-body pb-0">
       <div class="row d-flex align-items-stretch">
-      ';
-  $i = 0;
-  // profile teacher
-  while ($row = $loop_teacher->fetch_assoc()) {
-    // main
-    echo '
+        <?php
+        $i = 0;
+        // profile teacher
+        while ($row = $loop_teacher->fetch_assoc()) {
+          // main
+          echo '
         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
           <div class="card bg-light">
             <div class="card-body pt-0">
@@ -60,22 +55,22 @@ function Person()
               </div>
             </div>
             ';
-    $row_limit = $limit->fetch_assoc();
-    $limit_count =  $row_limit["count_yes"] + 0;
-    if ($limit_count > 5) {
-      echo '
-                <div class="card-footer">
+          // $row_limit = $limit->fetch_assoc();
+          $limit_count =  0;
+          if ($limit_count > 5) {
+            echo '
+                  <div class="card-footer">
                     <div class="text-right">
-                        <a href="#" class="btn btn-sm bg-teal">
-                          ' . $limit_count . '/5
-                        </a>
-                        <a href = "?research=1&name=' . $row["Name"] . '" class="btn btn-sm btn-primary disabled">
+                      <a href="#" class="btn btn-sm bg-teal">
+                        ' . $limit_count . '/5
+                      </a>
+                      <a href="?research=1&name=' . $row[" Name"] . '" class="btn btn-sm btn-primary disabled">
                         <i class="fas fa-user">เลือกที่ปรึกษา</i>
                         </a>
                     </div>
                 </div>';
-    } else {
-      echo '
+          } else {
+            echo '
                 <div class="card-footer">
                     <div class="text-right">
                         <a href="#" class="btn btn-sm bg-teal">
@@ -86,14 +81,14 @@ function Person()
                         </a>
                     </div>
                 </div>';
-    }
-    echo '
+          }
+          echo '
           </div>
         </div>
         ';
-    $i++;
-  }
-  echo '
+          $i++;
+        } ?>
+
       </div>
     </div>
     <div class="card-footer">
@@ -105,6 +100,4 @@ function Person()
     </div>
   </div>
 
-</section>    
-    ';
-}
+</section>

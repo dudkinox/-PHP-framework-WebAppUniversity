@@ -33,8 +33,8 @@
                             </div>
                             <div class="wizard-step" data-wizard-type="step">
                                 <div class="wizard-label">
-                                    <i class="wizard-icon flaticon-list"></i>
-                                    <h3 class="wizard-title">2. รายละเอียด</h3>
+                                    <img src="https://img.icons8.com/cotton/64/000000/mission-of-a-company--v1.png" />
+                                    <h3 class="wizard-title">2. หลักการ ทฤษฎี เหตุผล ระยะเวลา</h3>
                                 </div>
                                 <span class="svg-icon svg-icon-xl wizard-arrow">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -50,8 +50,8 @@
                             <!--begin::Wizard Step 3 Nav-->
                             <div class="wizard-step" data-wizard-type="step">
                                 <div class="wizard-label">
-                                    <i class="wizard-icon flaticon-responsive"></i>
-                                    <h3 class="wizard-title">3. Select Services</h3>
+                                    <img src="https://img.icons8.com/dusk/64/000000/floor-plan.png" />
+                                    <h3 class="wizard-title">3. แผนการดำเนินงาน ขอบเขตการศึกษา</h3>
                                 </div>
                                 <span class="svg-icon svg-icon-xl wizard-arrow">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
@@ -69,8 +69,8 @@
                             <!--begin::Wizard Step 4 Nav-->
                             <div class="wizard-step" data-wizard-type="step">
                                 <div class="wizard-label">
-                                    <i class="wizard-icon flaticon-truck"></i>
-                                    <h3 class="wizard-title">4. Delivery Address</h3>
+                                    <img src="https://img.icons8.com/dusk/64/000000/growing-money.png" />
+                                    <h3 class="wizard-title">4. ประโยชน์ที่คาดว่าจะได้รับ</h3>
                                 </div>
                                 <span class="svg-icon svg-icon-xl wizard-arrow">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
@@ -88,8 +88,8 @@
                             <!--begin::Wizard Step 5 Nav-->
                             <div class="wizard-step" data-wizard-type="step">
                                 <div class="wizard-label">
-                                    <i class="wizard-icon flaticon-globe"></i>
-                                    <h3 class="wizard-title">5. Review and Submit</h3>
+                                    <img src="https://img.icons8.com/dusk/64/000000/check.png" />
+                                    <h3 class="wizard-title">5. ตรวจสอบข้อมูล</h3>
                                 </div>
                                 <span class="svg-icon svg-icon-xl wizard-arrow last">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
@@ -110,7 +110,7 @@
                     <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
                         <div class="col-xl-12 col-xxl-12">
                             <!--begin::Wizard Form-->
-                            <form class="form" id="kt_form">
+                            <form class="form" id="kt_form" action="app/research/api/insert.php" method="POST">
 
                                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                     <h3 class="mb-10 font-weight-bold text-dark">
@@ -149,7 +149,7 @@
                                     </h4>
                                     <div class="form-group">
                                         <label for="principles">หลักการ ทฤษฎี เหตุผล</label>
-                                        <textarea class="form-control" placeholder="หลักการ ทฤษฎี เหตุผล" id="objective" name="objective" rows="14" required></textarea>
+                                        <textarea class="form-control" placeholder="หลักการ ทฤษฎี เหตุผล" id="Principle" name="Principle" rows="14" required></textarea>
                                         <span class="form-text text-muted">ศัพท์นิยามเฉพาะเป็นภาษาไทย วงเล็บภาษาอังกฤษ</span>
                                     </div>
 
@@ -171,7 +171,7 @@
                                                     <tbody>
                                                         <div class="form-group">
                                                             <label>กิจกรรมที่ <b>(1)</b></label>
-                                                            <input type="text" class="form-control form-control-lg" placeholder="กรอกชื่อกิจกรรม" />
+                                                            <input type="text" class="form-control form-control-lg" placeholder="กรอกชื่อกิจกรรม" id="activity" name="activity" />
                                                         </div>
                                                         <div class="form-group">
                                                             <label>เลือกระยะเวลา</label>
@@ -179,12 +179,13 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"><i class="la la-calendar-check-o"></i></span>
                                                                 </div>
-                                                                <input type="text" class="form-control " placeholder="วันที่เริ่มต้น <-> วันที่สิ้นสุด">
+                                                                <input type="text" class="form-control " placeholder="วันที่เริ่มต้น <-> วันที่สิ้นสุด" id="date" name="date">
                                                             </div>
                                                         </div>
+                                                        <!-- function javasript add row -->
+                                                        <div id="add_table"></div>
                                                     </tbody>
                                                 </table>
-                                                <div id="add_table"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -225,62 +226,7 @@
                                 </div>
                                 <!--end::Wizard Step 4-->
                                 <!--begin::Wizard Step 5-->
-                                <div class="pb-5" data-wizard-type="step-content">
-                                    <!--begin::Section-->
-                                    <h4 class="mb-10 font-weight-bold text-dark">
-                                        Review your Details and Submit
-                                    </h4>
-                                    <h6 class="font-weight-bolder mb-3">
-                                        Current Address:
-                                    </h6>
-                                    <div class="text-dark-50 line-height-lg">
-                                        <div>Address Line 1</div>
-                                        <div>Address Line 2</div>
-                                        <div>Melbourne 3000, VIC, Australia</div>
-                                    </div>
-                                    <div class="separator separator-dashed my-5"></div>
-                                    <!--end::Section-->
-                                    <!--begin::Section-->
-                                    <h6 class="font-weight-bolder mb-3">
-                                        Delivery Details:
-                                    </h6>
-                                    <div class="text-dark-50 line-height-lg">
-                                        <div>
-                                            Package: Complete Workstation (Monitor,
-                                            Computer, Keyboard &amp; Mouse)
-                                        </div>
-                                        <div>Weight: 25kg</div>
-                                        <div>
-                                            Dimensions: 110cm (w) x 90cm (h) x 150cm (L)
-                                        </div>
-                                    </div>
-                                    <div class="separator separator-dashed my-5"></div>
-                                    <!--end::Section-->
-                                    <!--begin::Section-->
-                                    <h6 class="font-weight-bolder mb-3">
-                                        Delivery Service Type:
-                                    </h6>
-                                    <div class="text-dark-50 line-height-lg">
-                                        <div>
-                                            Overnight Delivery with Regular Packaging
-                                        </div>
-                                        <div>
-                                            Preferred Morning (8:00AM - 11:00AM) Delivery
-                                        </div>
-                                    </div>
-                                    <div class="separator separator-dashed my-5"></div>
-                                    <!--end::Section-->
-                                    <!--begin::Section-->
-                                    <h6 class="font-weight-bolder mb-3">
-                                        Delivery Address:
-                                    </h6>
-                                    <div class="text-dark-50 line-height-lg">
-                                        <div>Address Line 1</div>
-                                        <div>Address Line 2</div>
-                                        <div>Preston 3072, VIC, Australia</div>
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
+
                                 <!--end::Wizard Step 5-->
                                 <!--begin::Wizard Actions-->
                                 <div class="d-flex justify-content-between border-top mt-5 pt-10">
