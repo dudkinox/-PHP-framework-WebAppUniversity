@@ -105,8 +105,9 @@ session_destroy();
                                 <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Sign Up</h3>
                                 <p class="text-muted font-weight-bold font-size-h4">Enter your details to create your account</p>
                             </div>
-                            <!--end::Title-->
-                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg font-size-h6" type="number" placeholder="ID STUDEDNT" name="id_student" id="id_student" autocomplete="off" />
+                            </div>
                             <div class="form-group">
                                 <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg font-size-h6" type="text" placeholder="Fullname" name="fullname" id="fullname" autocomplete="off" />
                             </div>
@@ -440,7 +441,8 @@ session_destroy();
                                 var password = document.getElementById("cpassword").value;
                                 var tel = document.getElementById("tel").value;
                                 var address = document.getElementById("address").value;
-                                window.location.href = "insert/index.php?fullname=" + fullname + "&email=" + email + "&password=" + password + "&tel=" + tel + "&address=" + address;
+                                var id_student = document.getElementById("id_student").value;
+                                window.location.href = "insert/index.php?fullname=" + fullname + "&email=" + email + "&password=" + password + "&tel=" + tel + "&address=" + address + "&id_student=" + id_student;
                             });
                         } else {
                             swal.fire({

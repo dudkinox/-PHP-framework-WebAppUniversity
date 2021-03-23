@@ -7,6 +7,7 @@ $_SESSION["password_login"] = isset($_GET["pass"]) ? $_GET["pass"] : '';
 
 $ID = mysqli_real_escape_string($conn, $_SESSION["account_login"]);
 $Password = mysqli_real_escape_string($conn, $_SESSION["password_login"]);
+$Password = md5($Password);
 $sql = "SELECT email, password FROM login WHERE email = '" . $ID . "' AND password = '" . $Password . "'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

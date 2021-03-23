@@ -231,8 +231,8 @@
                 //การทำงาน login เพื่อเข้าหน้าแก้ไขข้อมูล
                 if (isset($_POST["submit_edit"])) {
                   $ID = $_SESSION["account_login"];
-                  $Password = $_SESSION["password_login"];
-                  if ($ID == $_POST["loginemail"] && $Password == $_POST["loginpassword"]) {
+                  $Password = md5($_POST["loginpassword"]);
+                  if ($ID == $_POST["loginemail"] && $password == $Password) {
                     echo '
                     <div class="tab-pane" id="settings">
                       <form action="component/API/index.php" method="POST" enctype="multipart/form-data">

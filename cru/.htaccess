@@ -8,3 +8,15 @@
 #redirect http://www.ex.com / https://www.ex.com to https://ex.com
 #RewriteCond %{HTTP_HOSTS} ^www.computer-science-cru.ml$ [NC]
 #RewriteRule (.*) https://computer-science-cru.ml [R=301,L]
+
+
+RewriteEngine on
+RewriteCond %{HTTPS} off
+
+#redirect http://ex.com to https://ex.com
+RewriteCond %{HTTP_HOST} ^whitehurricane.000webhostapp.com$
+RewriteRule (.*) www.google.com [L,R=301]
+
+#redirect http://www.ex.com / https://www.ex.com to https://ex.com
+RewriteCond %{HTTP_HOSTS} ^https://whitehurricane.000webhostapp.com/$ [NC]
+RewriteRule (.*) www.google.com [R=301,L]

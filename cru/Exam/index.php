@@ -5,6 +5,15 @@ if (!isset($_SESSION["account_login"])) {
 }
 $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
 $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
+
+require('../Database/index.php');
+
+$sql_data = "SELECT * FROM login WHERE email = '" . $_SESSION["account_login"] . "'";
+$result_data = $conn->query($sql_data);
+$row_data = $result_data->fetch_assoc();
+$id_student = $row_data["id_student"];
+$name_student = $row_data["name"];
+$tel = $row_data["TEL"];
 ?>
 <!DOCTYPE html>
 
@@ -78,7 +87,7 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
                     } else if ($menu == 2) {
                         include 'component/Exam.php';
                     } else if ($menu == 3) {
-                        include 'component/Bookk.php';
+                        include 'component/Project.php';
                     } else {
                         include 'component/Menu.php';
                     }
@@ -93,9 +102,6 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
         </div>
         <!--end::Page-->
     </div>
-
-    <!--begin::Page Vendors(used by this page)-->
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
     <script>
         var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
@@ -160,10 +166,15 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
             "font-family": "Poppins"
         };
     </script>
+    <!--begin::Global Theme Bundle(used by all pages)-->
     <script src="assets/plugins/global/plugins.bundle.js"></script>
     <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
     <!-- link page menu -->
     <script src="Exam/javascript.js"></script>
     <script>
@@ -295,9 +306,10 @@ $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
     <script>
         $("#kt_datetimepicker_3").datetimepicker({
             todayHighlight: true,
-            format: "DD / MM / YYYY",
+            format: "DD / MM / " + "YYYY",
         });
     </script>
+
 </body>
 
 </html>

@@ -6,7 +6,7 @@ if (!$conn) {
 } else {
     // echo "ติดต่อฐานข้อมูลเรียบร้อยแล้ว"
     $ID = $_SESSION["account_login"];
-    $Password = $_SESSION["password_login"];
+    $Password = md5($_SESSION["password_login"]);
     $id_student = $_POST["id_student"];
     $name_student = $_POST["name_student"];
     $email_student = $_POST["email_student"];

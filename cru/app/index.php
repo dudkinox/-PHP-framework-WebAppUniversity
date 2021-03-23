@@ -4,7 +4,8 @@ if (!isset($_SESSION["account_login"])) {
     header('location: ../');
 }
 require("../Database/index.php");
-$sql_type = "SELECT Type, name, id_student, email, TEL, Address FROM login WHERE email = '" . $_SESSION["account_login"] . "' AND password = '" . $_SESSION["password_login"] . "'";
+$password = md5($_SESSION["password_login"]);
+$sql_type = "SELECT Type, name, id_student, email, TEL, Address FROM login WHERE email = '" . $_SESSION["account_login"] . "' AND password = '" . $password . "'";
 $result = $conn->query($sql_type);
 $row = $result->fetch_assoc();
 $type_account = $row["Type"];
