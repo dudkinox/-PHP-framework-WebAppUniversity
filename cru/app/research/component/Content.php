@@ -153,7 +153,7 @@
                                         <span class="form-text text-muted">ศัพท์นิยามเฉพาะเป็นภาษาไทย วงเล็บภาษาอังกฤษ</span>
                                     </div>
 
-                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4 mb-3 add-new fa fa-plus">
+                                    <button type="button" onclick="add_row_table()" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4 mb-3 add-new fa fa-plus">
                                         เพิ่มระยะเวลากิจกรรม
                                     </button>
 
@@ -184,6 +184,7 @@
                                                         </div>
                                                     </tbody>
                                                 </table>
+                                                <div id="add_table"></div>
                                             </div>
                                         </div>
                                     </div>
