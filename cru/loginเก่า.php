@@ -1,75 +1,259 @@
-<?php
-session_start();
-session_destroy();
-if (isset($_POST["submit"])) {
-    session_start();
-    $_SESSION["account_login"] = htmlentities($_POST["account_login"]);
-    $_SESSION["password_login"] = htmlentities($_POST["password_login"]);
-    header('location: login/index.php');
-}
-?>
-<!DOCTYPE html>
-<html>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-<head>
-    <?php
-    $register = isset($_GET["register"]) ? $_GET["register"] : '';
-    $forget = isset($_GET["forget"]) ? $_GET["forget"] : '';
-    ?>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>วิทยาการคอมพิวเตอร์ - จันทรเกษม</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <a href="index3.html" class="brand-link">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="bootstrap/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="bootstrap/dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- สร้างเอง -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Css animetion -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- เชื่อม javascript -->
-    <script src="js/register.js"></script>
-</head>
+        <img src="../img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 
-<body class="hold-transition login-page">
-    <div class="login-box">
+        <!-- เลข id -->
+
+        <span class="brand-text font-weight-light"><?php echo $showid; ?></span>
+
+    </a>
+
+
+
+    <div class="sidebar">
+
+        <!-- Sidebar user panel (optional) -->
+
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+            <div class="image">
+
+                <img src="https://img.icons8.com/bubbles/50/000000/guest-male.png" class="img-circle elevation-2" alt="User Image">
+
+
+
+            </div>
+
+            <div class="info">
+
+                <!-- ชื่อ -->
+
+                <a href="?profile=1" class="d-block"><?php echo $showname; ?></a>
+
+            </div>
+
+        </div>
+
+
+
         <?php
-        require('component/Head.php');
-        Head();
-        if ($register == 1) {
-            require('component/Register.php');
-            Register();
-        } else if ($forget == 1) {
-            require('component/Forget.php');
-            Forget();
+
+        if ($type_account == "admin") {
+
+            echo '
+
+<nav class="mt-2">
+
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+    <li class="nav-item has-treeview menu-open">
+
+        <a  class="nav-link active">
+
+            <img src="https://img.icons8.com/dusk/40/000000/dashboard.png" />
+
+            <p>
+
+                เพิ่มบัญชีผู้ใช้
+
+                <i class="right fas fa-angle-left"></i>              
+
+            </p>
+
+        </a>
+
+        ';
         } else {
-            require('component/Content.php');
-            Content();
+
+            echo '
+
+ <nav class="mt-2">
+
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item has-treeview menu-open">
+
+                    <a href="/" class="nav-link active">
+
+                        <img src="https://img.icons8.com/dusk/40/000000/dashboard.png" />
+
+                        <p>
+
+                            วิจัยนักศึกษา
+
+                            <i class="right fas fa-angle-left"></i>
+
+                        </p>
+
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+
+                            <!-- แสดงช่องการกด menu -->
+
+                            ';
+
+            if ($person == 1) {
+
+                echo '<a href="?person=1" class="nav-link active">';
+            } else {
+
+                echo '<a href="?person=1" class="nav-link">';
+            }
+
+            echo '
+
+                            <img src="https://img.icons8.com/plasticine/30/000000/development-skill.png" />
+
+                            <p>เสนอหัวข้อวิจัย</p>
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                        ';
+
+
+
+            if ($approve == 1) {
+
+                echo '<a href="?approve=1" class="nav-link active">';
+            } else {
+
+                echo '<a href="?approve=1" class="nav-link">';
+            }
+
+            echo '
+
+                            <img src="https://img.icons8.com/plasticine/30/000000/approve.png" />
+
+                            <p>ติดตามการอนุมัติ</p>
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a href="../../../Exam" class="nav-link">
+
+                                <img src="https://img.icons8.com/dusk/30/000000/test-partial-passed.png" />
+
+                                <p>ขอสอบหัวข้อวิจัย</p>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+';
         }
+
         ?>
+
+
+
+        <!-- ขั้นกลาง -->
+
+        <li class="nav-item"><br /></li>
+
+        <?php
+
+        // MENU อาจารย์
+
+        if ($type_account == "student") {
+
+            echo '
+
+                <li class="nav-item">
+
+                    <a href="https://whitehurricane.000webhostapp.com/document/doc_index.html" target="_blank" class="nav-link">
+
+                        <img src="https://img.icons8.com/dusk/30/000000/downloads-folder--v1.png" />
+
+                        ดาวโหลดแบบฟอร์ม
+
+                    </a>
+
+                </li>
+
+                ';
+        }
+
+        if ($type_account == "teacher") {
+
+            echo '
+
+                <li class="nav-item">';
+
+            if ($calendar == 1) {
+
+                echo '<a href="?calendar=1" class="nav-link active">';
+            } else {
+
+                echo '<a href="?calendar=1" class="nav-link">';
+            }
+
+            echo '
+
+                            <img src="https://img.icons8.com/dusk/30/000000/calendar--v1.png" />
+
+                            ห้องสอบ / ตารางเวลา
+
+                        </a>
+
+                </li>
+
+                ';
+        }
+
+        ?>
+
+        <li class="nav-item">
+
+            <a href="?logout=1" class="nav-link">
+
+                <img src="https://img.icons8.com/dusk/30/000000/logout-rounded-left.png" />
+
+                <p>ออกจากระบบ</p>
+
+            </a>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a href="#" class="nav-link">
+
+                <img src="https://img.icons8.com/dusk/30/000000/clock--v2.png" />
+
+                <p>
+
+                    <span id="digitalclock" class="styling"></span>
+
+                    <script src="js/time.js"></script>
+
+                    <span class="right badge badge-danger">time</span>
+
+                </p>
+
+            </a>
+
+        </li>
+
+        </ul>
+
+        </nav>
 
     </div>
 
-    <!-- jQuery -->
-    <script src="bootstrap/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="bootstrap/dist/js/adminlte.min.js"></script>
-    <!-- css animetion -->
-    <script>
-        AOS.init();
-    </script>
-</body>
-
-</html>
+</aside>

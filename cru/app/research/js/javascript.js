@@ -12,7 +12,9 @@ function add_row_table() {
     "<label>กิจกรรมที่ <b>(" +
     count +
     ")</b></label>" +
-    "<input type='text' class='form-control form-control-lg' placeholder='กรอกชื่อกิจกรรม' />" +
+    "<input type='text' class='form-control form-control-lg' placeholder='กรอกชื่อกิจกรรม' name = 'activity" +
+    count +
+    "' />" +
     "</div>" +
     "<div class='form-group'>" +
     "<label>เลือกระยะเวลา</label>" +
@@ -24,7 +26,9 @@ function add_row_table() {
     "<i class='la la-calendar-check-o'></i>" +
     "</span>" +
     "</div>" +
-    "<input type='text' class='form-control 'placeholder='วันที่เริ่มต้น <-> วันที่สิ้นสุด' />" +
+    "<input type='text' class='form-control 'placeholder='วันที่เริ่มต้น <-> วันที่สิ้นสุด' name = 'date" +
+    count +
+    "'/>" +
     "</div>" +
     "</div>";
   document.getElementById("add_tbody").appendChild(tbody);

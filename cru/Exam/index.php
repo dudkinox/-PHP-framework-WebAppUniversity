@@ -21,7 +21,7 @@ $tel = $row_data["TEL"];
 <!--begin::Head-->
 
 <head>
-    <base href="../../">
+    <base href="../">
     <meta charset="utf-8" />
     <title>COMPUTER SCIENCE | CALENDAR</title>
     <meta name="description" content="Upcoming events and happenings" />
@@ -44,8 +44,6 @@ $tel = $row_data["TEL"];
     <link rel="shortcut icon" href="https://img.icons8.com/dusk/64/000000/saving-book.png" />
     <!-- create css -->
     <link rel="stylesheet" href="app/css/style_calendar.css">
-    <!-- line water -->
-    <link rel="stylesheet" href="../linewater.css">
 </head>
 
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">

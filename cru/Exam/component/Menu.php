@@ -2,7 +2,7 @@
     <div class="d-flex flex-column-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6" onclick="link_menu('../app/?approve=1')">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6" onclick="link_menu('/computer_science/app/?approve=1')">
                     <div class="card card-custom gutter-b card-stretch cursor-pointer" data-tilt data-tilt-max="30" data-tilt-glare data-tilt-max-glare="0.55">
                         <div class="card-body pt-4">
                             <div class="d-flex align-items-end mb-7">

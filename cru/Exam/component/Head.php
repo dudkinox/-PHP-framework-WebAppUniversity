@@ -26,7 +26,7 @@ function Head()
     echo '
             <div class="topbar">
                 <div class="topbar-item">
-                    <a href = "/app/">  
+                    <a href = "/computer_science/app/">  
                         <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                             <div class="d-flex flex-column text-right pr-3">
                                 <span class="text-dark font-weight-bolder font-size-sm d-none d-md-inline">ย้อนกลับ</span>

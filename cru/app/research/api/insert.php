@@ -48,13 +48,13 @@ VALUES('" . $id_student . "',
 // ระยะเวลากิจกรรม
 $activity = $_POST["activity"];
 $date = $_POST["date"];
-$sql_date_event = "INSERT INTO date_event (id_student,
-                                        Date,
-                                        Ativity)
-                    VALUES ('" . $id_student . "',
-                    '" . $date . "',
-                    '" . $activity . "'
-                    )";
+$sql_date_event_odd = "INSERT INTO date_event (id_student,
+                                                Date,
+                                                Ativity)
+                            VALUES ('" . $id_student . "',
+                            '" . $date . "',
+                            '" . $activity . "'
+                            )";
 
 // สถานะ
 $sql_status = "INSERT INTO Topic_status (id_student,
@@ -65,12 +65,31 @@ $sql_status = "INSERT INTO Topic_status (id_student,
                                         'ยังไม่อนุมัติ'
                                         )";
 if ($conn->query($sql_Topic) === TRUE) {
-    if ($conn->query($sql_date_event) === TRUE) {
+    if ($conn->query($sql_date_event_odd) === TRUE) {
         if ($conn->query($sql_status) === TRUE) {
+            // กรณีที่มีหลาย ตาราง
+            $count = 2;
+            while (isset($_POST["activity" . $count])) {
+                $activity_event = $_POST["activity" . $count];
+                $date_event = $_POST["date" . $count];
+                $sql_date_event_event = "INSERT INTO date_event (id_student,
+                                                Date,
+                                                Ativity)
+                            VALUES ('" . $id_student . "',
+                            '" . $date_event . "',
+                            '" . $activity_event . "'
+                            )";
+                if ($conn->query($sql_date_event_event) === TRUE) {
+                    $count++;
+                } else {
+                    echo 'มันไม่เข้าอ่ะ';
+                    exit;
+                }
+            }
             header('location: ../../?approve=1');
         }
     } else {
-        echo "Error: " . $sql_date_event . "<br>" . $conn->error;
+        echo "Error: " . $sql_date_event_odd . "<br>" . $conn->error;
     }
 } else {
     echo "Error: " . $sql_Topic . "<br>" . $conn->error;

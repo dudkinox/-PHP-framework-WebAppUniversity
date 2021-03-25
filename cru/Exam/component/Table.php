@@ -27,29 +27,64 @@
             </thead>
             <tbody>
                 <?php
-                $sql_table = "SELECT * FROM exam WHERE idpass = '" . $id_student . "'";
-                $result_table = $conn->query($sql_table);
-                if ($result_table->num_rows > 0) {
-                    $round = 1;
-                    while ($row_table = $result_table->fetch_assoc()) {
-                        echo '
+                $sql_research = "SELECT * FROM Topic WHERE id_student = '" . $id_student . "'";
+                $result_research = $conn->query($sql_research);
+                // รอบ
+                $round = 1;
+                if ($result_research->num_rows > 0) {
+                    $row_research = $result_research->fetch_assoc();
+                    // Status
+                    $sql_status = "SELECT Status FROM Topic_status WHERE id_student = '" . $id_student . "'";
+                    $result_status = $conn->query($sql_status);
+                    $row_status = $result_status->fetch_assoc();
+
+                    echo '
                     <tr>
                         <td>' . $round . '</td>
-                        <td>' . $row_table["date_picker"] . '</td>
-                        <td>' . $row_table["idpass"] . '</td>
-                        <td>' . $row_table["sername"] . '</td>
-                        <td>' . $row_table["namelastname"] . '</td>
-                        <td>' . $row_table["Doc_type"] . '</td>
+                        <td> - </td>
+                        <td>' . $row_research["id_student"] . '</td>
+                        <td> - </td>
+                        <td>' . $name_student . '</td>
+                        <td>เอกสารเสนอหัวข้อวิจัย</td>
                         <td><a href = "Exam/report/?id=' . $id_student . '" target = "_blank"><img class = "cursor-pointer" src="https://img.icons8.com/dusk/30/000000/pdf.png"></a></td>
-                        <td>' . $row_table["Round_edit"] . '</td>
+                        <td> ยังไม่ได้ทำ </td>';
+                    // สถานะ
+                    if ($row_status["Status"] == "ยังไม่อนุมัติ") {
+                        echo '<td>2</td>';
+                    } else {
+                        echo '<td>4</td>';
+                    }
+                    echo '
+                        <td nowrap="nowrap">
+                            <a href = "Exam/API.php?edit=1"><img class = "cursor-pointer" src="https://img.icons8.com/dusk/30/000000/edit.png"/></a>
+                        </td>
+                    </tr>';
+                    $round++;
+                }
+                // ขอสอบ
+                $sql_exam = "SELECT * FROM exam WHERE idpass = '" . $id_student . "'";
+                $result_exam = $conn->query($sql_exam);
+
+                if ($result_exam->num_rows > 0) {
+                    $row_exam = $result_exam->fetch_assoc();
+                    echo '
+                    <tr>
+                        <td>' . $round . '</td>
+                        <td>' . $row_exam["date_picker"] . '</td>
+                        <td>' . $row_exam["idpass"] . '</td>
+                        <td>' . $row_exam["sername"] . '</td>
+                        <td>' . $row_exam["namelastname"] . '</td>
+                        <td>' . $row_exam["Doc_type"] . '</td>
+                        <td><a href = "Exam/report/?id=' . $id_student . '" target = "_blank"><img class = "cursor-pointer" src="https://img.icons8.com/dusk/30/000000/pdf.png"></a></td>
+                        <td>' . $row_exam["Round_edit"] . '</td>
                         <td>2</td>
                         <td nowrap="nowrap">
                             <a href = "Exam/API.php?edit=1"><img class = "cursor-pointer" src="https://img.icons8.com/dusk/30/000000/edit.png"/></a>
                         </td>
                     </tr>';
-                        $round++;
-                    }
+                    $round++;
                 }
+
                 ?>
             </tbody>
         </table>
