@@ -12,6 +12,7 @@ $result_topic = $conn->query($sql_topic);
 $row_topic = $result_topic->fetch_assoc();
 $name_teacher = $row_topic["Name_teacher"];
 
+
 function format_date_event($group_date)
 {
     $format_date = explode("-", $group_date);
@@ -63,6 +64,8 @@ function format_date_event($group_date)
 require_once __DIR__ . '/../../../lib/pdf/vendor/autoload.php';
 
 $mpdf = new \Mpdf\Mpdf();
+echo 'wert';
+exit;
 $style =
     '
 <style>
@@ -135,25 +138,39 @@ $text = '
     </div>
     <div  class="detail">
         <p>
-            1. รหัสประจำตัว ' . $id . ' ชื่อ-นามสกุล ' . $name_lastname . '<br />
+            1. รหัสประจำตัว '
+    . $id .
+    ' ชื่อ-นามสกุล '
+    . $name_lastname .
+    '<br />
             &nbsp;&nbsp;&nbsp;&nbsp;นักศึกษา ภาคในเวลาชั้นปี3 หมู่เรียน วท.บ.611(4)/1
         </p>
         <p>
             2. ชื่อหัวข้อที่นำเสนอ<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;ภาษาไทย : ' . $row_topic["NameProjectTH"] . '<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;ภาษาอังกฤษ : ' . $row_topic["NameProjectEng"] . '
+            &nbsp;&nbsp;&nbsp;&nbsp;ภาษาไทย : '
+    . $row_topic["NameProjectTH"] .
+    '<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;ภาษาอังกฤษ : '
+    . $row_topic["NameProjectEng"] .
+    '
         </p>
         <p>
             3. ความเป็นมาและความสำคัญของปัญหา <br />
-            ' . $importance . '
+            '
+    . $importance .
+    '
         </p>
         <p>
             4.วัตถุประสงค์ <br />
-            ' . $objective . '
+            '
+    . $objective .
+    '
         </p>
         <p>
             5. หลักการ ทฤษฎี เหตุผล <br />
-            ' . $Principle . '
+            '
+    . $Principle .
+    '
         </p>
         <p>
             6. ระยะเวลาดำเนินการ <br />
