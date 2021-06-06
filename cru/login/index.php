@@ -24,11 +24,11 @@ for ($i = 0; $i < $number; $i++) {
             exit;
         } else {
             $_SESSION["alert_password"] = 1;
-            header('location: ../../project/');
+            header('location: ../../paper/');
             exit;
         }
     }
 }
 $_SESSION["alert_login"] = 1;
-header('location: ../../project/');
+header('location: ../../paper/');
 exit;
