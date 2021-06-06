@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap");
+* {
+  font-family: "Kanit";
+}
+
+.bg-white {
+  background-color: #303030 !important;
+}
+
+.text-dark {
+  color: #ffffff !important;
+}
+
+.text-primary {
+  color: #ffa800 !important;
+}
+
+body,
+html {
+  font-size: 17px !important;
+}
+
+.btn.btn-primary {
+  color: #303030;
+  background-color: #ffa800;
+  border-color: #f64e60;
+}
+
+.max-h-70px {
+  max-height: 187px !important;
+}
+
+#input_animetion {
+  animation: input_animetion 2s ease 0s normal none;
+}
+
+#sign_in {
+  animation: sign_in 2s ease 0s normal none;
+}
+
+#logo {
+  animation: logo 2s ease 0s normal none;
+}
+
+#topic {
+  animation: topic 2s ease 0s normal none;
+}
+
+#head_com {
+  animation: head_com 2s ease 0s normal none;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 10%;
+  min-height: 100%;
+  opacity: 0.09;
+}
+
+@keyframes input_animetion {
+  0.0% {
+    transform: translate(-100px, 0px);
+  }
+  100% {
+  }
+}
+
+@keyframes sign_in {
+  0.0% {
+    transform: translate(0px, 100px);
+  }
+  100% {
+  }
+}
+
+@keyframes logo {
+  0.0% {
+    opacity: 0;
+  }
+  100% {
+  }
+}
+
+@keyframes topic {
+  0.0% {
+    color: #ffa800;
+    transform: translate(0px, 100px);
+  }
+  100% {
+    color: #303030;
+  }
+}
+
+@keyframes head_com {
+  0.0% {
+    transform: translate(0px, -100px);
+  }
+  100% {
+  }
+}
