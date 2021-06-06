@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION["account_login"])) {
     header('location: /');
 }
-$name_teacher = $_SESSION["name_teacher"];
+$option = isset($_GET["option"]) ? $_GET["option"] : '';
 ?>
 <!DOCTYPE html>
 
@@ -44,7 +44,7 @@ $name_teacher = $_SESSION["name_teacher"];
 
     <?php
     require('component/Head_mobile.php');
-    Head_mobile($name_teacher);
+    Head_mobile($option);
     ?>
     <!--end::Header Mobile-->
     <div class="d-flex flex-column flex-root">
@@ -55,16 +55,18 @@ $name_teacher = $_SESSION["name_teacher"];
                 <!--begin::Header-->
                 <?php
                 require('component/Head.php');
-                Head($name_teacher);
+                Head($option);
                 ?>
 
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <?php
-                    require('component/Top_head.php');
-                    Top_head();
-                    include 'component/Content.php';
+                    if ($option != "edit") {
+                        include 'component/Content.php';
+                    } else {
+                        include 'component/Content_edit.php';
+                    }
                     ?>
                 </div>
                 <?php
@@ -110,7 +112,7 @@ $name_teacher = $_SESSION["name_teacher"];
             },
             function(start, end, label) {
                 $("#kt_daterangepicker_3 .form-control").val(
-                    start.format("DD-MM-YYYY") + " <-> " + end.format("DD-MM-YYYY")
+                    start.format("DD-MM-YYYY") + " ถึง " + end.format("DD-MM-YYYY")
                 );
             }
         );
@@ -210,7 +212,7 @@ $name_teacher = $_SESSION["name_teacher"];
                 },
                 function(start, end, label) {
                     $("#kt_daterangepicker_3 .form-control").val(
-                        start.format("DD-MM-YYYY") + " <-> " + end.format("DD-MM-YYYY")
+                        start.format("DD-MM-YYYY") + " ถึง " + end.format("DD-MM-YYYY")
                     );
                 }
             );

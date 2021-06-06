@@ -23,11 +23,6 @@ a.brand-link {
   color: #1f374d;
 }
 
-.img-circle.img-fluid {
-  /* position: relative; */
-  /* left: 200px; */
-}
-
 .navbar-light .navbar-nav .nav-link {
   color: rgb(0 0 0);
 }
@@ -38,7 +33,7 @@ a.brand-link {
 
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #dc3545;
+  background-color: #fff;
 }
 
 .badge-warning {
@@ -99,12 +94,27 @@ td {
   text-align: center;
 }
 
+div#head_status {
+  background: #eea300;
+}
+
 .sidebar {
   background: #303030;
 }
 
 span#approve_status {
   color: #ff0a0aec;
+}
+
+#keep_activity {
+  position: absolute;
+  top: 47px;
+  left: 10px;
+  opacity: 0.6;
+}
+
+div#keep_activity:hover {
+  opacity: 1;
 }
 
 span#approve_statusapprove {
@@ -119,16 +129,6 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4 {
 .mailbox-read-info h5,
 .mailbox-read-info h6 {
   color: #000;
-}
-
-img.img-circle.img-fluid {
-  /* position: relative; */
-  /* left: 90px; */
-}
-
-.img-fluid {
-  /* max-width: 250%; */
-  /* height: auto; */
 }
 
 img.H1 {
@@ -219,11 +219,17 @@ img {
   border-color: #fd7e14;
 }
 
-/* à¹à¸à¹‰à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸”à¸³ */
-
 .modal-backdrop {
   /* bug fix - no overlay */
   display: none;
+}
+
+.btn-secondary {
+  background-color: #df7f40 !important;
+}
+
+body {
+  background: #303030 !important;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800;);

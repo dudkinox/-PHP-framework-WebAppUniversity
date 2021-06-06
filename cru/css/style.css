@@ -2,12 +2,15 @@
 * {
   font-family: "Kanit";
 }
+
 .bg-white {
   background-color: #303030 !important;
 }
+
 .text-dark {
   color: #ffffff !important;
 }
+
 .text-primary {
   color: #ffa800 !important;
 }
@@ -22,6 +25,7 @@ html {
   background-color: #ffa800;
   border-color: #f64e60;
 }
+
 .max-h-70px {
   max-height: 187px !important;
 }
@@ -37,9 +41,11 @@ html {
 #logo {
   animation: logo 2s ease 0s normal none;
 }
+
 #topic {
   animation: topic 2s ease 0s normal none;
 }
+
 #head_com {
   animation: head_com 2s ease 0s normal none;
 }
@@ -60,6 +66,7 @@ html {
   100% {
   }
 }
+
 @keyframes sign_in {
   0.0% {
     transform: translate(0px, 100px);
@@ -67,6 +74,7 @@ html {
   100% {
   }
 }
+
 @keyframes logo {
   0.0% {
     opacity: 0;
@@ -74,6 +82,7 @@ html {
   100% {
   }
 }
+
 @keyframes topic {
   0.0% {
     color: #ffa800;
@@ -83,6 +92,7 @@ html {
     color: #303030;
   }
 }
+
 @keyframes head_com {
   0.0% {
     transform: translate(0px, -100px);

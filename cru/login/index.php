@@ -2,60 +2,33 @@
 session_start();
 
 require('../Database/index.php');
-$_SESSION["account_login"] = isset($_GET["id"]) ? $_GET["id"] : '';
-$_SESSION["password_login"] = isset($_GET["pass"]) ? $_GET["pass"] : '';
+$_SESSION["account_login"] = $_POST["username"];
+$_SESSION["password_login"] = $_POST["password"];
 $ID = mysqli_real_escape_string($conn, $_SESSION["account_login"]);
 $Password = mysqli_real_escape_string($conn, $_SESSION["password_login"]);
 $Password = md5($Password);
-$sql = "SELECT email, password FROM login WHERE email = '" . $ID . "' AND password = '" . $Password . "'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // if (!headers_sent()) {
-    //     foreach (headers_list() as $header)
-    //         header_remove($header);
-    // }
-    header('location: ../app/');
-} else {
-    echo '
-<!doctype html>
-<html lang="en">
+$url = 'http://whitehurricane.000webhostapp.com/service.php';
+$json = file_get_contents($url);
+$json = json_decode($json);
+$number = count($json);
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+for ($i = 0; $i < $number; $i++) {
+    if ($ID == $json[$i]->Username) {
+        if ($Password == $json[$i]->Password) {
+            $_SESSION["type"] = $json[$i]->Level;
+            $_SESSION["name"] = $json[$i]->Firstname;
+            $_SESSION["Lastname"] = $json[$i]->Lastname;
+            $_SESSION["no_std"] = $json[$i]->no_std;
 
-<body>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"><img src="https://img.icons8.com/plasticine/60/000000/hazard-warning-flasher.png"/>แจ้งเตือน</h5>
-            </div>
-            <div class="modal-body">
-                กรุณากรอกรหัสผ่านให้ถูกต้อง
-            </div>
-            <div class="modal-footer">
-                <a href = "../">
-                    <button type="button" class="btn btn-primary">ตกลง</button>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>       
-    ';
+            header('location: ../app/');
+            exit;
+        } else {
+            $_SESSION["alert_password"] = 1;
+            header('location: ../../computer_science/');
+            exit;
+        }
+    }
 }
-?>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script>
-    $('document').ready(function() {
-        $('#exampleModalCenter').modal('show');
-    })
-</script>
-</body>
-
-</html>
+$_SESSION["alert_login"] = 1;
+header('location: ../../computer_science/');
+exit;

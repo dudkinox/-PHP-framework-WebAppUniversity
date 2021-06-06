@@ -5,6 +5,7 @@ if (!isset($_SESSION["account_login"])) {
 }
 $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
 $menu = isset($_GET["menu"]) ? $_GET["menu"] : '';
+$edit = isset($_GET["edit"]) ? $_GET["edit"] : '';
 
 require('../Database/index.php');
 
@@ -14,6 +15,7 @@ $row_data = $result_data->fetch_assoc();
 $id_student = $row_data["id_student"];
 $name_student = $row_data["name"];
 $tel = $row_data["TEL"];
+$sername = $row_data["sername"];
 ?>
 <!DOCTYPE html>
 
@@ -86,6 +88,8 @@ $tel = $row_data["TEL"];
                         include 'component/Exam.php';
                     } else if ($menu == 3) {
                         include 'component/Project.php';
+                    } else if ($edit == 1) {
+                        include 'edit/index.php';
                     } else {
                         include 'component/Menu.php';
                     }
@@ -175,6 +179,8 @@ $tel = $row_data["TEL"];
     <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
     <!-- link page menu -->
     <script src="Exam/javascript.js"></script>
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="assets/js/pages/crud/file-upload/dropzonejs.js"></script>
     <script>
         "use strict";
 

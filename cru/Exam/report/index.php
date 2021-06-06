@@ -3,9 +3,17 @@
 require('../../Database/index.php');
 // Get data
 $id = isset($_GET["id"]) ? $_GET["id"] : '';
-$sql = "SELECT * FROM exam WHERE idpass = '" . $id . "'";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+$edit = isset($_GET["edit"]) ? $_GET["edit"] : '';
+
+if ($edit == '') {
+  $sql = "SELECT * FROM exam WHERE idpass = '" . $id . "'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+} else {
+  $sql = "SELECT * FROM exam_log WHERE idpass = '" . $id . "' AND Round_edit = " . $edit . "";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+}
 
 require_once __DIR__ . '/../../lib/pdf/vendor/autoload.php';
 

@@ -1,203 +1,204 @@
 "use strict";
 
 // Class definition
-var KTWizard5 = function () {
-	// Base elements
-	var _wizardEl;
-	var _formEl;
-	var _wizardObj;
-	var _validations = [];
+var KTWizard5 = (function() {
+        / Base elements
+        vr _wizardEl;
+        var _formEl;
+        r _wizardObj;
+        var _validations = [];
 
-	// Private functions
-	var _initWizard = function () {
-		// Initialize form wizard
-		_wizardObj = new KTWizard(_wizardEl, {
-			startStep: 1, // initial active step number
-			clickableSteps: false  // allow step clicking
-		});
+        Private functions
+        vr _initWizard = function() {
+            //nitialize form wizard
+            _ardObj = new KTWizard(_wizardEl, {
+                statep: 1, // initial active step number
+                clicbleSteps: false, // allow step clicking
+            });
 
-		// Validation before going to next page
-		_wizardObj.on('change', function (wizard) {
-			if (wizard.getStep() > wizard.getNewStep()) {
-				return; // Skip if stepped back
-			}
+            alidation before going to next page
+            _wiardObj.on("change", function(wi zard) {
+                    if (zard.getStep() > wizard.getNewStep()) {
+                        retur // Skip if stepped back
+                    }
 
-			// Validate form before change wizard step
-			var validator = _validations[wizard.getStep() - 1]; // get validator for currnt step
+                    // Vaidate form before change wizard step
+                    var vlidator = _validations[wizard.getStep() - 1]; // get validator for currnt step
 
-			if (validator) {
-				validator.validate().then(function (status) {
-					if (status == 'Valid') {
-						wizard.goTo(wizard.getNewStep());
+                    if (validator) {
+                        validar.validate().then(function(status) {
+                                if (status == "Valid") {
+                                    wizard.getNewStep());
 
-						KTUtil.scrollTop();
-					} else {
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn font-weight-bold btn-light"
-							}
-						}).then(function () {
-							KTUtil.scrollTop();
-						});
-					}
-				});
-			}
+                                KTlTop();
+                            }
+                            e Swal.f text:
+                            text:
+                            text:
+                            text:
+                            "Sorrs like there are some errors detected, please try again.",
+                            icon:
+                            butto: false,
+                            confext: "Ok, got it!",
+                            custom n: "btn font-weight-bold btn-light",
 
-			return false;  // Do not change wizard step, further action will be handled by he validator
-		});
+                        })() {
+                        KTUtil.scrollTop();
 
-		// Change event
-		_wizardObj.on('changed', function (wizard) {
-			KTUtil.scrollTop();
-		});
+                    }
+                }
+            }
 
-		// Submit event
-		_wizardObj.on('submit', function (wizard) {
-			Swal.fire({
-				text: "All is good! Please confirm the form submission.",
-				icon: "success",
-				showCancelButton: true,
-				buttonsStyling: false,
-				confirmButtonText: "Yes, submit!",
-				cancelButtonText: "No, cancel",
-				customClass: {
-					confirmButton: "btn font-weight-bold btn-primary",
-					cancelButton: "btn font-weight-bold btn-default"
-				}
-			}).then(function (result) {
-				if (result.value) {
-					_formEl.submit(); // Submit form
-				} else if (result.dismiss === 'cancel') {
-					Swal.fire({
-						text: "Your form has not been submitted!.",
-						icon: "error",
-						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
-						customClass: {
-							confirmButton: "btn font-weight-bold btn-primary",
-						}
-					});
-				}
-			});
-		});
-	}
+            return false; // Do not change wizard step, further action will be handled by he validator
+        });
 
-	var _initValidation = function () {
-		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		// Step 1
-		_validations.push(FormValidation.formValidation(
-			_formEl,
-			{
-				fields: {
-					firstname: {
-						validators: {
-							notEmpty: {
-								message: 'First name is required'
-							}
-						}
-					},
-					lastname: {
-						validators: {
-							notEmpty: {
-								message: 'Last name is required'
-							}
-						}
-					},
-					phone: {
-						validators: {
-							notEmpty: {
-								message: 'Phone is required'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
+    // hange event   
+    wizardbj.on("changed", function(wizard) {
+        Util.scrollTop();
+    });
 
-		// Step 2
-		_validations.push(FormValidation.formValidation(
-			_formEl,
-			{
-				fields: {
-					address1: {
-						validators: {
-							notEmpty: {
-								message: 'Address is required'
-							}
-						}
-					},
-					address2: {
-						validators: {
-							notEmpty: {
-								message: 'Address is required'
-							}
-						}
-					},
-					postcode: {
-						validators: {
-							notEmpty: {
-								message: 'Postcode is required'
-							}
-						}
-					},
-					city: {
-						validators: {
-							notEmpty: {
-								message: 'City is required'
-							}
-						}
-					},
-					state: {
-						validators: {
-							notEmpty: {
-								message: 'State is required'
-							}
-						}
-					},
-					country: {
-						validators: {
-							notEmpty: {
-								message: 'Country is required'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					// Bootstrap Framework Integration
-					bootstrap: new FormValidation.plugins.Bootstrap({
-						//eleInvalidClass: '',
-						eleValidClass: '',
-					})
-				}
-			}
-		));
-	}
+    // Submit event   
+    wizardbj.on("submit", function(wizard) {
+            Swal.fir {
+                textืนยั นที่ จะส่ ง ",
+                icouccess ",
+                selButton: true,
+                    buttontyling: false,
+                    confiuttonText: "ตกลง",
+                    canttonText: "ยกเลิก",
+                    customClas {
+                        ton: "btn font-weight-bold btn-primary",
+                        Button: "btn font-weight-bold btn-default",
 
-	return {
-		// public functions
-		init: function () {
-			_wizardEl = KTUtil.getById('kt_wizard');
-			_formEl = KTUtil.getById('kt_form');
+                        .then(function(result) {
+                                (result.value) {
+                                    _formEl.submit(); // Submit form
+                                }
+                                esult.dismiss === "cancel") {
+                                Swal.f
+                                text: ยกเลิก ",
+                                icon: ",
+                                buttonsng: false,
+                                    confirmBunText: "ตกลง",
+                                    customClass:
+                                    confirmton: "btn font-weight-bold btn-primary",
+                            },
 
-			_initWizard();
-			_initValidation();
-		}
-	};
-}();
+                        }
+                    };
+            });
+    };
 
-jQuery(document).ready(function () {
-	KTWizard5.init();
+    ar _nitValidation = function() {
+        // nit form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+        //tep 1
+        _validions.push(
+                FormValtion.formValidation(_formEl, {
+                        field
+                        firstname
+                        validators
+                        notEmpty: merst name is required ",
+                    },
+                },
+            },
+            astname: {
+                alidators: {
+                    notEmpty: {
+                        messagest name is required ",
+                    },
+                },
+            },
+            phon
+        valid
+        notE
+        message: "Pone is required",
+    },
+
+}
+},
+plu
+trigew FormValidation.plugins.Trigger(),
+    // Bootap Framework Integration
+    bootstrap: n FormValidation.plugins.Bootstrap({
+            //eleInvalidClass: '',
+            Class: "",
+        }
+
+
+    );
+
+/tep 2
+_valiions.push(
+    FormVation.formValidation(_formEl, {
+            fiel
+            address
+            validato
+            notEmpt
+            mdress is required ",
+
+        }
+    },
+    address2: {
+        validators: {
+            notEmpty: {
+                messadress is required ",
+            },
+        },
+    },
+    pos vali notEmpty: {
+        message: stcode is required ",
+    },
+},
+},
+city: {
+    validato
+    notEmpt
+    mty is required ",
+
+}
+},
+state: {
+        validators: {
+            notEmpty: {
+                messaate is required ",
+            },
+        },
+    },
+    co
+val
+notEmpty: {
+    message: untry is required ",
+},
+},
+
+},
+plugins:
+    trew FormValidation.plugins.Trigger(),
+    // Boap Framework Integration
+    bootstrap: FormValidation.plugins.Bootstrap({
+            //eleInvalClass: '',
+            eleClass: "",
+
+        },
+
+    );
+};
+
+retu {
+    /ublic function   s
+    init: nction() {
+        _widEl = KTUtil.getById("kt_wizard");
+        _formEl = KTUtil.getById("kt_form");
+
+        _iniizard();
+        nitValidation();
+    },
+};
+})();
+
+Qury(document).ready(function() {
+    K
+
+
+    TWizard5.init();
 });

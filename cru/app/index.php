@@ -5,15 +5,23 @@ if (!isset($_SESSION["account_login"])) {
 }
 require("../Database/index.php");
 $password = md5($_SESSION["password_login"]);
-$sql_type = "SELECT Type, name, id_student, email, TEL, Address FROM login WHERE email = '" . $_SESSION["account_login"] . "' AND password = '" . $password . "'";
-$result = $conn->query($sql_type);
-$row = $result->fetch_assoc();
-$type_account = $row["Type"];
-$showname = $row["name"];
-$showid = $row["id_student"];
-$showemail = $row["email"];
-$showTEL = $row["TEL"];
-$showAddress = $row["Address"];
+// $_SESSION["account_login"]
+$type_account = strtolower($_SESSION["type"]);
+$showname = $_SESSION["name"] . " " . $_SESSION["Lastname"];
+$showid = $_SESSION["no_std"];
+
+$sql_status = "SELECT Status, Level FROM status WHERE id_student = '" . $showid . "'";
+$result_status = $conn->query($sql_status);
+if ($result_status->num_rows > 0) {
+    $row_status = $result_status->fetch_assoc();
+    $status = $row_status["Status"];
+    $level = $row_status["Level"];
+} else {
+    $status = "ยังไม่ได้เลือกที่ปรึกษา";
+    $level = 1;
+}
+
+
 $logout = isset($_GET["logout"]) ? $_GET["logout"] : '';
 if ($logout == 1) {
     session_destroy();
@@ -24,12 +32,13 @@ $approve = isset($_GET["approve"]) ? $_GET["approve"] : '';
 $testing = isset($_GET["testing"]) ? $_GET["testing"] : '';
 $person = isset($_GET["person"]) ? $_GET["person"] : '';
 $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
+$director = isset($_GET["director"]) ? $_GET["director"] : '';
+$Directer = isset($_GET["Directer"]) ? $_GET["Directer"] : '';
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>COM-SCI System</title>
@@ -67,43 +76,53 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
     <link rel="stylesheet" href="../bootstrap/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../bootstrap/plugins/summernote/summernote-bs4.css">
-    <!-- line water -->
-    <link rel="stylesheet" href="../linewater.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="../bootstrap/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../bootstrap/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../bootstrap/plugins/toastr/toastr.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper" data-aos="fade-right">
+    <div class="wrapper">
+
         <?php
         include "component/Head.php";
-        include "component/Menu.php";
+        include "component/Menus.php";
         ?>
         <div class="content-wrapper">
             <?php
             if ($research == 1) {
                 $name_teacher = isset($_GET["name"]) ? $_GET["name"] : '';
-                $_SESSION["name_teacher"] = htmlentities($name_teacher);
+                $_SESSION["name_teacher"] = $name_teacher;
                 echo '<script>window.location.href = "research/"</script>';
             } else if ($approve == 1) {
                 if ($type_account == "student") {
                     include "approve/List_student.php";
-                } else {
-                    require("approve/Approve.php");
-                    Approve($showname, $showid);
                 }
             } else if ($calendar == 1) {
                 echo '<script>window.location.href = "calendar/"</script>';
             } else if ($person == 1) {
                 include "research/Person.php";
+            } else if ($director == 1) {
+                include "director/director.php";
             } else {
                 if ($type_account == "admin") {
                     include "admin/Admin.php";
                 } else {
-                    include "component/Content.php";
+                    $option = isset($_GET["option"]) ? $_GET["option"] : '';
+                    if ($option == "edit") {
+                        include "component/Content_edit.php";
+                    } else {
+                        include "component/Content.php";
+                    }
                 }
             }
             ?>
         </div>
-        <div class="fb-customerchat" attribution=setup_tool page_id="103128325122912" theme_color="#0A7CFF" logged_in_greeting="สวัสดีนักศึกษาสอบถามอะไรดีเอ๋ย?" logged_out_greeting="สวัสดีนักศึกษาสอบถามอะไรดีเอ๋ย?">
+        <div class="fb-customerchat" attribution=setup_tool page_id="103128325122912" theme_color="#0A7CFF" logged_in_greeting="สอบถามเพิ่มเติม ?" logged_out_greeting="สอบถามเพิ่มเติม ?">
         </div>
         <!-- /.content-wrapper -->
         <?php
@@ -115,9 +134,7 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
         <!-- /.control-sidebar -->
-
     </div>
-    <!-- ./wrapper -->
 
     <!-- jQuery -->
     <script src="../bootstrap/plugins/jquery/jquery.min.js"></script>
@@ -153,6 +170,8 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
     <script src="../bootstrap/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../bootstrap/dist/js/demo.js"></script>
+    <!-- Select2 -->
+    <script src="../bootstrap/plugins/select2/js/select2.full.min.js"></script>
     <!-- DataTables -->
     <script src="../bootstrap/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../bootstrap/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -161,6 +180,10 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
     <!-- Summernote -->
     <script src="../bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js "></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="../bootstrap/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- create javascript -->
+    <script src="js/main.js"></script>
     <script>
         AOS.init();
         window.fbAsyncInit = function() {
@@ -197,7 +220,12 @@ $calendar = isset($_GET["calendar"]) ? $_GET["calendar"] : '';
         $(function() {
             //Add text editor
             $('#compose-textarea').summernote()
+            //Bootstrap Duallistbox
+            $('.duallistbox').bootstrapDualListbox()
         })
+        $(document).ready(function() {
+            $("#keep_activity").draggable();
+        });
     </script>
 </body>
 

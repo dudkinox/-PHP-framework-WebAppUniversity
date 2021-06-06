@@ -8,7 +8,7 @@
 <div class="d-flex flex-column-fluid">
     <!--begin::Container-->
     <div class="container">
-        <div class="card card-custom">
+        <div class="card card-custom mt-5">
             <div class="card-body p-0">
                 <!--begin::Wizard-->
                 <div class="wizard wizard-1" id="kt_wizard" data-wizard-state="step-first" data-wizard-clickable="false">
@@ -109,21 +109,19 @@
 
                     <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
                         <div class="col-xl-12 col-xxl-12">
-                            <!--begin::Wizard Form-->
                             <form class="form" id="kt_form" action="app/research/api/insert.php" method="POST">
-
                                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                     <h3 class="mb-10 font-weight-bold text-dark">
                                         แบบเสนอหัวข้อโปรเจค
                                     </h3>
                                     <div class="form-group">
                                         <label>ชื่อหัวข้อ (ภาษาไทย)</label>
-                                        <input type="text" class="form-control form-control-solid form-control-lg" name="NameProjectTH" placeholder="กรอกชื่อหัวข้อโปรเจค" value="" required />
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="NameProjectTH" id="NameProjectTH" placeholder="กรอกชื่อหัวข้อโปรเจค" required />
                                         <span class="form-text text-muted">พิมพ์ภาษาไทย</span>
                                     </div>
                                     <div class="form-group">
                                         <label>ชื่อหัวข้อ (ภาษาอังกฤษ)</label>
-                                        <input type="text" class="form-control form-control-solid form-control-lg" name="NameProjectEng" placeholder="Please enter your name project" value="" required />
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="NameProjectEng" id="NameProjectEng" placeholder="Please enter your name project" value="" required />
                                         <span class="form-text text-muted">พิมพ์ภาษาอังกฤษ</span>
                                     </div>
                                     <div class="row">
@@ -143,6 +141,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="pb-5" data-wizard-type="step-content">
                                     <h4 class="mb-10 font-weight-bold text-dark">
                                         แบบเสนอหัวข้อโปรเจค
@@ -221,26 +220,28 @@
                                     <div class="form-group">
                                         <label>คำนิยามศัพท์เฉพาะ</label>
                                         <textarea class="form-control" placeholder="กรอกเป็นข้อๆ" id="vocabulary" name="vocabulary" rows="14" required></textarea>
-                                        <span class="form-text text-muted">ประโยชน์ที่ผู้ใช้จะได้รับ</span>
+                                        <span class="form-text text-muted">คำนิยามศัพท์เฉพาะ</span>
                                     </div>
                                 </div>
                                 <!--end::Wizard Step 4-->
                                 <!--begin::Wizard Step 5-->
-
+                                <div class="pb-5" data-wizard-type="step-content">
+                                    <div id="show_preview" align="center"></div>
+                                </div>
                                 <!--end::Wizard Step 5-->
                                 <!--begin::Wizard Actions-->
                                 <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                     <div class="mr-2">
                                         <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">
-                                            Previous
+                                            ย้อนกลับ
                                         </button>
                                     </div>
                                     <div>
                                         <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">
                                             ขออนุมัติ
                                         </button>
-                                        <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">
-                                            Next
+                                        <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next" onclick="detail_preview()">
+                                            ถัดไป
                                         </button>
                                     </div>
                                 </div>
@@ -248,6 +249,22 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alert_date_activity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><img src="https://img.icons8.com/plasticine/60/000000/hazard-warning-flasher.png" />แจ้งเตือน</h5>
+            </div>
+            <div class="modal-body">
+                <h4>กรุณาระบุกิจกรรมและระยะเวลาให้เรียบร้อย</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="close_alert()">ตกลง</button>
             </div>
         </div>
     </div>
