@@ -25,20 +25,15 @@
                                     OR 	director_name = '" . $showname . "'
                                     OR president_name = '" . $showname . "'";
                 $result_consultant = $conn->query($sql_consultant);
-                $url = 'http://whitehurricane.000webhostapp.com/service.php';
-                $json = file_get_contents($url);
-                $json = json_decode($json);
-                $number = count($json);
 
                 if ($result_consultant->num_rows > 0) {
                     $round_consultant = 1;
                     while ($row_consultant = $result_consultant->fetch_assoc()) {
-                        for ($i = 0; $i < $number; $i++) {
-                            if ($json[$i]->no_std == $row_consultant["id_student"]) {
-                                $name_student = $json[$i]->Firstname . " " . $json[$i]->Lastname;
-                                break;
-                            }
-                        }
+                        $sql_name_student = "SELECT * FROM Login 
+                WHERE no_std = '" . $row_consultant["id_student"] . "'";
+                        $result_name_student = $conn->query($sql_name_student);
+                        $row_no_std = $result_name_student->fetch_assoc();
+                        $name_student = $row_no_std["pre"] . " " . $row_no_std3["Firstname"] . " " . $row_no_std3["Lastname"];
                         $sql_topic = "SELECT NameProjectTH FROM topic WHERE id_student = '" . $row_consultant["id_student"] . "'";
                         $result_topic = $conn->query($sql_topic);
                         $row_topic = $result_topic->fetch_assoc();

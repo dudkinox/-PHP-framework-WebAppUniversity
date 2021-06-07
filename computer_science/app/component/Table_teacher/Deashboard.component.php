@@ -12,25 +12,18 @@
     <div class="card-body">
         <?php
 
-        use Mpdf\Tag\H1;
-
         $sql_exam_dashboard = "SELECT * FROM exam 
                                 WHERE teacher_name = '" . $showname . "' 
                                 OR director_name = '" . $showname . "'
                                 OR president_name  = '" . $showname . "' ";
         $result_exam_dashboard = $conn->query($sql_exam_dashboard);
-        $url = 'http://whitehurricane.000webhostapp.com/service.php';
-        $json = file_get_contents($url);
-        $json = json_decode($json);
-        $number = count($json);
         $round = 1;
         while ($row_deashboard = $result_exam_dashboard->fetch_assoc()) {
-            for ($i = 0; $i < $number; $i++) {
-                if ($row_deashboard["id_student"] == $json[$i]->no_std) {
-                    $name_student = $json[$i]->Firstname . " " . $json[$i]->Lastname;
-                    break;
-                }
-            }
+            $sql_name_student1 = "SELECT * FROM Login 
+                                            WHERE no_std = '" . $row_deashboard["id_student"] . "'";
+            $result_name_student1 = $conn->query($sql_name_student1);
+            $row_no_std1 = $result_name_student1->fetch_assoc();
+            $name_student = $row_no_std1["pre"] . " " . $row_no_std1["Firstname"] . " " . $row_no_std1["Lastname"];
         ?>
             <div class="card card-primary card-outline text-dark">
                 <a class="d-block w-100" data-toggle="collapse" href="#exam<?php echo $round; ?>">
@@ -69,17 +62,13 @@
                                 OR director_name = '" . $showname . "'
                                 OR president_name  = '" . $showname . "' ";
         $result_exam_dashboard = $conn->query($sql_exam_dashboard);
-        $url = 'http://whitehurricane.000webhostapp.com/service.php';
-        $json = file_get_contents($url);
-        $json = json_decode($json);
-        $number = count($json);
         while ($row_deashboard = $result_exam_dashboard->fetch_assoc()) {
-            for ($i = 0; $i < $number; $i++) {
-                if ($row_deashboard["id_student"] == $json[$i]->no_std) {
-                    $name_student = $json[$i]->Firstname . " " . $json[$i]->Lastname;
-                    break;
-                }
-            }
+
+            $sql_name_student2 = "SELECT * FROM Login 
+                                    WHERE no_std = '" . $row_deashboard["id_student"] . "'";
+            $result_name_student2 = $conn->query($sql_name_student2);
+            $row_no_std2 = $result_name_student2->fetch_assoc();
+            $name_student = $row_no_std2["pre"] . " " . $row_no_std2["Firstname"] . " " . $row_no_std2["Lastname"];
         ?>
             <div class="card card-primary card-outline text-dark">
                 <a class="d-block w-100" data-toggle="collapse" href="#exam_progress<?php echo $round; ?>">
@@ -118,17 +107,13 @@
                                 OR director_name = '" . $showname . "'
                                 OR president_name  = '" . $showname . "' ";
         $result_exam_dashboard = $conn->query($sql_exam_dashboard);
-        $url = 'http://whitehurricane.000webhostapp.com/service.php';
-        $json = file_get_contents($url);
-        $json = json_decode($json);
-        $number = count($json);
+
         while ($row_deashboard = $result_exam_dashboard->fetch_assoc()) {
-            for ($i = 0; $i < $number; $i++) {
-                if ($row_deashboard["id_student"] == $json[$i]->no_std) {
-                    $name_student = $json[$i]->Firstname . " " . $json[$i]->Lastname;
-                    break;
-                }
-            }
+            $sql_name_student3 = "SELECT * FROM Login 
+                WHERE no_std = '" . $row_deashboard["id_student"] . "'";
+            $result_name_student3 = $conn->query($sql_name_student3);
+            $row_no_std3 = $result_name_student3->fetch_assoc();
+            $name_student = $row_no_std3["pre"] . " " . $row_no_std3["Firstname"] . " " . $row_no_std3["Lastname"];
         ?>
             <div class="card card-primary card-outline text-dark">
                 <a class="d-block w-100" data-toggle="collapse" href="#exam_progress2<?php echo $round; ?>">

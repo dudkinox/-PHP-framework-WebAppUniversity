@@ -27,7 +27,7 @@
                     <td><?php echo $row_data["NameProjectTH"]; ?></td>
                     <td><?php echo $showname; ?></td>
                     <td><?php echo $row_data["Name_teacher"]; ?></td>
-                    <td><a href="approve/report?id=<?php echo $showid; ?>" target="_blank"><img src="https://img.icons8.com/dusk/30/000000/pdf.png" /></a></td>
+                    <td><a href="https://capital-cru.000webhostapp.com/report/?id=<?php echo $showid; ?>" target="_blank"><img src="https://img.icons8.com/dusk/30/000000/pdf.png" /></a></td>
                     <td>
                         <?php
                         if ($row_status["Status"] == "ยังไม่อนุมัติ") {

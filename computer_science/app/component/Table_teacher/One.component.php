@@ -20,23 +20,14 @@
                 <?php
                 $sql_consultant = "SELECT * FROM Topic WHERE Name_teacher = '" . $showname . "'";
                 $result_consultant = $conn->query($sql_consultant);
-                $url = 'http://whitehurricane.000webhostapp.com/service.php';
-                $json = file_get_contents($url);
-                $json = json_decode($json);
-                $number = count($json);
-
-                // echo $showname;
-                // exit;
-
                 if ($result_consultant->num_rows > 0) {
                     $round_consultant = 1;
                     while ($row_consultant = $result_consultant->fetch_assoc()) {
-                        for ($i = 0; $i < $number; $i++) {
-                            if ($json[$i]->no_std == $row_consultant["id_student"]) {
-                                $name_student = $json[$i]->Firstname . " " . $json[$i]->Lastname;
-                                break;
-                            }
-                        }
+                        $sql_name_student = "SELECT * FROM Login 
+                                                        WHERE no_std = '" . $row_consultant["id_student"] . "'";
+                        $result_name_student = $conn->query($sql_name_student);
+                        $row_no_std = $result_name_student->fetch_assoc();
+                        $name_student = $row_no_std["pre"] . " " . $row_no_std["Firstname"] . " " . $row_no_std["Lastname"];
                         $sql_status_director = "SELECT Status, Round_Edit FROM Topic_status WHERE id_student = '" . $row_consultant["id_student"] . "'";
                         $result_status_director = $conn->query($sql_status_director);
                         $row_status_director = $result_status_director->fetch_assoc();
@@ -47,7 +38,7 @@
                               <td>' . $row_consultant["id_student"] . '</td>
                               <td>' . $name_student . '</td>
                               <td>' . $row_consultant["NameProjectTH"] . '</td>
-                              <td><a href="approve/report?id=' . $row_consultant["id_student"] . '" target="_blank"><img src="https://img.icons8.com/dusk/30/000000/pdf.png"></a></td>
+                              <td><a href="https://capital-cru.000webhostapp.com/report/?id=' . $row_consultant["id_student"] . '" target="_blank"><img src="https://img.icons8.com/dusk/30/000000/pdf.png"></a></td>
                               <td>' . $row_status_director["Round_Edit"] . '</td>
                               <td>';
                         if ($row_status_director["Status"] == "ยังไม่อนุมัติ") {

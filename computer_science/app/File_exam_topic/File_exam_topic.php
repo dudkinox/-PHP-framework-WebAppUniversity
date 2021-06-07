@@ -23,14 +23,10 @@
     $get_teacher_name = 'SELECT `Name_teacher` FROM `topic_status` WHERE `id_student`="' . $showid . '" AND `Status`="อนุมัติแล้ว"';
     $result_teacher_name = $conn->query($get_teacher_name);
     $row_teacher_name = $result_teacher_name->fetch_assoc();
-    $url = 'http://whitehurricane.000webhostapp.com/service2.php';
-    $json = file_get_contents($url);
-    $json = json_decode($json);
-    for ($j = 0; $j < count($json); $j++) {
-        if ($json[$j]->Position == '1') {
-            break;
-        }
-    }
+
+    $sql_position = "SELECT * FROM Group_teacher WHERE Position = '1'";
+    $result_position = $conn->query($sql_position);
+    $row_position = $result_position->fetch_assoc();
 
     $show_teacher_name = $row_teacher_name["Name_teacher"]; // ที่ปรึกษา
     if ($page == 2) {
@@ -41,17 +37,19 @@
         $row_show_name = $result_show_name->fetch_assoc();
         $director_show_name = $row_show_name["director_name"];
     }
-    $president_show_name = $json[$j]->Name; //ประธานหลักสูตร
+    $president_show_name = $row_position["Name"]; //ประธานหลักสูตร
 
-    for ($k = 0; $k < count($json); $k++) {
-        if ($json[$k]->Name == $show_teacher_name) {
-            $image_teacher_name = 'http://whitehurricane.000webhostapp.com/assets/img/img_teacher/' . $json[$k]->profile;
+    $sql_name = "SELECT * FROM Group_teacher";
+    $result_name = $conn->query($sql_name);
+    while ($row_name = $result_name->fetch_assoc()) {
+        if ($row_name["Name"] == $show_teacher_name) {
+            $image_teacher_name = 'http://whitehurricane.000webhostapp.com/assets/img/img_teacher/' . $row_name["profile"];
         }
-        if ($json[$k]->Name == $director_show_name) {
-            $image_director_name = 'http://whitehurricane.000webhostapp.com/assets/img/img_teacher/' . $json[$k]->profile;
+        if ($row_name["Name"] == $director_show_name) {
+            $image_director_name = 'http://whitehurricane.000webhostapp.com/assets/img/img_teacher/' . $row_name["profile"];
         }
-        if ($json[$k]->Name == $president_show_name) {
-            $image_president_name = 'http://whitehurricane.000webhostapp.com/assets/img/img_teacher/' . $json[$k]->profile;
+        if ($row_name["Name"] == $president_show_name) {
+            $image_president_name = 'http://whitehurricane.000webhostapp.com/assets/img/img_teacher/' . $row_name["profile"];
         }
     }
     ?>

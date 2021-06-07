@@ -1,17 +1,20 @@
 <?php
-session_start();
-// Connect to database
-require('../../../Database/index.php');
 // Get data
 $id = isset($_GET["id"]) ? $_GET["id"] : '';
 // data student
-$name_lastname = $_SESSION["name"] . ' ' . $_SESSION["Lastname"];
-// data Topic
-$sql_topic = "SELECT * FROM Topic WHERE id_student = '" . $id . "'";
-$result_topic = $conn->query($sql_topic);
-$row_topic = $result_topic->fetch_assoc();
-$name_teacher = $row_topic["Name_teacher"];
+$arrContextOptions = array(
+    "ssl" => array(
+        "verify_peer" => false,
+        "verify_peer_name" => false,
+    ),
+);
 
+$url = 'https://sci.chandra.ac.th/comsci/paper/app/approve/report/TopicService.php?id=' . $id . '';
+$json = file_get_contents($url, false, stream_context_create($arrContextOptions));
+$json = json_decode($json);
+// data Topic
+$name_teacher = $json[0]->Name_teacher;
+$name_lastname = $json[0]->pre . ' ' . $json[0]->Firstname . ' ' . $json[0]->Lastname;
 
 function format_date_event($group_date)
 {
@@ -61,11 +64,10 @@ function format_date_event($group_date)
     return $date_picker = 'วันที่ ' . $format_date[0] . ' ' . $month . ' ' .  $year_s;
 }
 
-require_once __DIR__ . '/../../../lib/pdf/vendor/autoload.php';
+require_once __DIR__ . '/../pdf/vendor/autoload.php';
 
 $mpdf = new \Mpdf\Mpdf();
-echo 'wert';
-exit;
+
 $style =
     '
 <style>
@@ -116,12 +118,12 @@ p{
 
 </style>';
 $mpdf->WriteHTML($style);
-$importance = str_replace("\n", "<br>\n", $row_topic["importance"]);
-$objective = str_replace("\n", "<br>\n", $row_topic["objective"]);
-$Principle = str_replace("\n", "<br>\n", $row_topic["Principle"]);
-$plan_work = str_replace("\n", "<br>\n", $row_topic["plan_work"]);
-$Plimit_work = str_replace("\n", "<br>\n", $row_topic["limit_work"]);
-$vocabulary = str_replace("\n", "<br>\n", $row_topic["vocabulary"]);
+$importance = str_replace("\n", "<br>\n", $json[0]->importance);
+$objective = str_replace("\n", "<br>\n", $json[0]->objective);
+$Principle = str_replace("\n", "<br>\n", $json[0]->Principle);
+$plan_work = str_replace("\n", "<br>\n", $json[0]->plan_work);
+$Plimit_work = str_replace("\n", "<br>\n", $json[0]->limit_work);
+$vocabulary = str_replace("\n", "<br>\n", $json[0]->vocabulary);
 
 $importance = str_replace(" ", "&nbsp;", $importance);
 $objective = str_replace(" ", "&nbsp;", $objective);
@@ -148,10 +150,10 @@ $text = '
         <p>
             2. ชื่อหัวข้อที่นำเสนอ<br />
             &nbsp;&nbsp;&nbsp;&nbsp;ภาษาไทย : '
-    . $row_topic["NameProjectTH"] .
+    . $json[0]->NameProjectTH .
     '<br />
             &nbsp;&nbsp;&nbsp;&nbsp;ภาษาอังกฤษ : '
-    . $row_topic["NameProjectEng"] .
+    . $json[0]->NameProjectEng .
     '
         </p>
         <p>
@@ -183,26 +185,27 @@ $text = '
                 ';
 $mpdf->WriteHTML($text);
 // data date activity
-$sql_date = "SELECT * FROM date_event WHERE id_student = '" . $id . "'";
-$result_date = $conn->query($sql_date);
-$count = 1;
-while ($row_date = $result_date->fetch_assoc()) {
+$url_date_event = 'https://sci.chandra.ac.th/comsci/paper/app/approve/report/EventService.php?id=' . $id . '';
+$date_event = file_get_contents($url_date_event, false, stream_context_create($arrContextOptions));
+$date_event = json_decode($date_event);
+$number_date_event = count($date_event);
+for ($count = 0; $count < $number_date_event; $count++) {
     // format_date
-    $date_picker = $row_date["Date"];
+    $date_picker = $date_event[$count]->Date;
     $group_date = explode(" ถึง ", $date_picker);
     $date_1 = format_date_event($group_date[0]);
     $date_2 = format_date_event($group_date[1]);
 
     // show data
+    $numbers = $count + 1;
     $text_date_event = '
         <tr>
-            <td style = "text-align:center">' . $count . '</td>
+            <td style = "text-align:center">' . $numbers . '</td>
             <td style = "text-align:center">' . $date_1 . ' ถึง ' . $date_2 . '</td>
-            <td>' . $row_date["Ativity"] . '</td>
+            <td>' . $date_event[$count]->Ativity . '</td>
         </tr>
         ';
     $mpdf->WriteHTML($text_date_event);
-    $count++;
 }
 $text3 = '
             </table>
