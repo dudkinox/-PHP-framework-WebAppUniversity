@@ -21,7 +21,8 @@
     </div>
     <?php
     require("../Database/index.php");
-    $get_teacher_name = 'SELECT `Name_teacher` FROM `topic_status` WHERE `id_student`="' . $showid . '" AND `Status`="อนุมัติแล้ว"';
+    $get_teacher_name = 'SELECT Name_teacher FROM Topic_status 
+                        WHERE id_student="' . $showid . '" AND Status="อนุมัติแล้ว"';
     $result_teacher_name = $conn->query($get_teacher_name);
     $row_teacher_name = $result_teacher_name->fetch_assoc();
     $show_teacher_name = $row_teacher_name["Name_teacher"]; // ที่ปรึกษา

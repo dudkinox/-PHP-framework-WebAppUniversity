@@ -17,7 +17,6 @@
                     <th>เอกสาร</th>
                     <th>ดำเนินการ</th>
                     <th>คะแนน</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +35,7 @@
                         $result_name_student = $conn->query($sql_name_student);
                         $row_no_std = $result_name_student->fetch_assoc();
                         $name_student = $row_no_std["pre"] . " " . $row_no_std3["Firstname"] . " " . $row_no_std3["Lastname"];
-                        $sql_topic = "SELECT NameProjectTH FROM topic WHERE id_student = '" . $row_consultant["id_student"] . "'";
+                        $sql_topic = "SELECT NameProjectTH FROM Topic WHERE id_student = '" . $row_consultant["id_student"] . "'";
                         $result_topic = $conn->query($sql_topic);
                         $row_topic = $result_topic->fetch_assoc();
                         echo '
